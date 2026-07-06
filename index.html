@@ -1437,6 +1437,10 @@
     pathJefes.style.strokeDasharray = lenJefes;
 
     var stepEls = document.querySelectorAll('.chart-dot[data-step], .chart-val-label[data-step]');
+    var maxStep = Math.max.apply(null, Array.prototype.map.call(stepEls, function(el){
+      return parseFloat(el.getAttribute('data-step'));
+    }));
+    var lineChartContainer = document.querySelector('.line-chart-container');
     var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     if (reduceMotion) {
@@ -1462,6 +1466,15 @@
         var step = parseFloat(el.getAttribute('data-step'));
         el.classList.toggle('visible', currentStep >= step);
       });
+
+      // 3. En celular (donde la gráfica es más ancha que la pantalla), la desplaza
+      // hacia la derecha al mismo ritmo en que van apareciendo los datos, para que
+      // el punto de 2025 quede visible al terminar el scroll
+      var maxScrollLeft = lineChartContainer.scrollWidth - lineChartContainer.clientWidth;
+      if (maxScrollLeft > 0) {
+        var panProgress = Math.min(1, currentStep / maxStep);
+        lineChartContainer.scrollLeft = panProgress * maxScrollLeft;
+      }
     }
 
     var ticking = false;
