@@ -276,6 +276,12 @@
   .profile .it{padding:30px 24px;text-align:center}
   .profile .it + .it{border-left:1px solid var(--linea)}
   .profile .it b{display:block;font-family:var(--display);font-weight:600;font-size:2.6rem;line-height:1;color:var(--azul);font-variant-numeric:tabular-nums}
+  .profile .it .vs{
+    display:inline-block;font-family:var(--sans);font-weight:700;font-size:12px;
+    letter-spacing:.01em;padding:5px 12px;border-radius:20px;margin-top:12px;
+    color:var(--lavanda); /* Esto pinta el texto del color corporativo lavanda (#869EE5) */
+    background:rgba(134,158,229,.12); /* Esto crea el fondo traslúcido usando los valores RGB del color lavanda al 12% de opacidad */
+  }
   .profile .it span{display:block;font-family:var(--sans);font-size:13px;color:var(--gris);margin-top:12px;line-height:1.4}
 
   /* animación escalonada del retrato: el cuadro ya no se anima como bloque, cada hijo entra por su cuenta */
@@ -473,16 +479,41 @@
   .food-list.in .food-item:nth-child(3){transition-delay:.6s}
   .food-list.in .food-item:nth-child(4){transition-delay:.85s}
 
-  /* ---------- interseccionalidad ---------- */
-  .inter{max-width:var(--wide);margin:44px auto;display:grid;grid-template-columns:1fr 1fr;gap:22px}
-  .inter .panel{border:1px solid var(--linea-fuerte);padding:0;overflow:hidden}
-  .inter .panel h3{font-family:var(--sans);font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:13px;color:var(--hueso);background:var(--azul);margin:0;padding:16px 26px}
-  .inter .panel.afro h3{background:var(--azul-2)}
-  .inter .stat{padding:22px 26px;display:flex;gap:20px;align-items:baseline}
-  .inter .stat + .stat{border-top:1px solid var(--linea)}
-  .inter .stat .v{font-family:var(--display);font-weight:600;font-size:2.3rem;line-height:1;color:var(--azul);flex:0 0 auto;min-width:3.4ch;font-variant-numeric:tabular-nums}
-  .inter .stat .d{font-family:var(--sans);font-size:14px;line-height:1.45;color:var(--tinta)}
-  .inter .stat .d em{font-style:normal;color:var(--gris);display:block;margin-top:3px;font-size:13px}
+  /* ---------- interseccionalidad (tabla comparativa) ---------- */
+  .inter-table{max-width:var(--wide);margin:44px auto;border:1px solid var(--linea-fuerte);border-radius:10px;overflow:hidden;background:var(--hueso)}
+  .inter-table.reveal{opacity:1;transform:none;transition:none}
+
+  .it-header,.it-row{display:grid;grid-template-columns:minmax(180px,1.6fr) 1fr 1fr}
+  .it-header{border-bottom:1px solid var(--linea-fuerte)}
+  .it-cell.it-empty{background:var(--hueso)}
+  .it-col-title{
+    font-family:var(--sans);font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+    font-size:13px;color:var(--hueso);display:flex;align-items:center;justify-content:center;
+    text-align:center;padding:20px 16px;border-left:1px solid rgba(250,250,250,.16);
+  }
+  .it-col-title.indigena{background:var(--azul)}
+  .it-col-title.afro{background:var(--azul-2)}
+
+  /* Filas de la tabla (aparecen escalonadas al entrar en pantalla) */
+  .it-row{
+    align-items:center;
+    opacity:0;transform:translateY(15px);
+    transition:opacity .6s ease,transform .6s ease;
+  }
+  .it-row + .it-row{border-top:1px solid var(--linea)}
+  .inter-table.in .it-row{
+    opacity:1;transform:translateY(0);
+    transition-delay:calc(var(--delay) * 1s);
+  }
+
+  .it-label{padding:26px 28px;font-family:var(--sans);font-size:15px;line-height:1.45;color:var(--tinta)}
+  .it-sub{display:block;margin-top:6px;font-family:var(--sans);font-weight:600;font-size:12.5px;color:var(--lavanda)}
+  .it-val{
+    text-align:center;padding:20px 16px;border-left:1px solid var(--linea);
+    font-family:var(--display);font-weight:600;font-size:2.1rem;color:var(--azul-2);
+    font-variant-numeric:tabular-nums;
+  }
+  .it-sub-val{display:block;font-family:var(--sans);font-weight:500;font-size:13px;color:var(--gris);margin-top:6px}
 
   /* ---------- lista resumen final ---------- */
   .summary{max-width:var(--col);margin:40px auto}
@@ -525,13 +556,17 @@
     .hero .cell + .cell{border-left:0;border-top:1px solid rgba(34,53,129,.16)}
     .income{grid-template-columns:1fr}
     .income .mid{order:-1}
-    .compare,.inter,.poverty-cards{grid-template-columns:1fr}
+    .compare,.poverty-cards{grid-template-columns:1fr}
     .profile .row{grid-template-columns:1fr 1fr}
     .profile .it:nth-child(3){border-left:0}
     .profile .it:nth-child(n+3){border-top:1px solid var(--linea)}
     .pullstat{padding:36px 28px}
     .pullstat-content{flex-direction:column;gap:28px}
     .pullstat-stats{width:100%}
+    .it-header,.it-row{grid-template-columns:minmax(140px,1.4fr) 1fr 1fr}
+    .it-col-title{font-size:11.5px;padding:14px 10px}
+    .it-label{padding:20px 16px;font-size:14px}
+    .it-val{font-size:1.6rem;padding:16px 10px}
   }
   @media (max-width:600px){
     .food-item{flex-direction:row;align-items:center;gap:20px;padding:18px 20px}
@@ -561,6 +596,12 @@
     .stc-lbl small{font-size:9.5px}
     .stc-bars{height:32px}
     .stc-seg{font-size:11px}
+    .it-header,.it-row{grid-template-columns:minmax(108px,1.3fr) 1fr 1fr}
+    .it-col-title{font-size:10px;padding:12px 6px;letter-spacing:.03em}
+    .it-label{padding:16px 12px;font-size:12.5px}
+    .it-sub{font-size:11px}
+    .it-val{font-size:1.25rem;padding:14px 6px}
+    .it-sub-val{font-size:11px}
   }
   @media (prefers-reduced-motion:reduce){
     .reveal{opacity:1;transform:none;transition:none}
@@ -570,6 +611,7 @@
     .path-jefas,.path-jefes{transition:none}
     .chart-dot,.chart-val-label{opacity:1;transform:none;transition:none}
     .stc-row,.stc-seg{transition:none}
+    .it-row{transition:none}
   }
 </style>
 </head>
@@ -618,7 +660,7 @@
   <div class="col">
     <p class="lede-first">La mujer que hoy encabeza un hogar en Colombia probablemente vive en una ciudad, es madre; en muchos casos no tiene pareja y asume sola buena parte de las responsabilidades económicas de su familia. También es probable que en su casa viva un niño pequeño o una persona adulta mayor que requiere cuidados permanentes. Y, más que los hombres en la misma posición, siente que el dinero no alcanza, que su situación económica se ha deteriorado y que alimentar a su hogar es cada vez más difícil.</p>
     <p>Lejos de ser una realidad desde el margen, este perfil representa a millones de mujeres. De acuerdo con la Encuesta de Calidad de Vida 2025, en Colombia, 8,8 millones de hogares están liderados por mujeres, el equivalente al 46,4% del total nacional. En ellos viven 24,6 millones de personas, casi la mitad de la población del país.</p>
-    <p>Son casi nueve millones de hogares en los que una mujer sostiene el día a día. No una pareja, no un hombre: ella. Es quien responde por el arriendo, organiza los cuidados, acompaña las tareas escolares, paga las cuentas del mes y toma las decisiones necesarias para que el hogar siga adelante.</p>
+    <p>Son casi nueve millones de hogares en los que una mujer sostiene el día a día. No una pareja, no un hombre, ella. Es quien responde por el arriendo, organiza los cuidados, acompaña las tareas escolares, paga las cuentas del mes y toma las decisiones necesarias para que el hogar siga adelante.</p>
     <p>El cambio ha sido acelerado. Hace poco más de una década, en el 2016, la brecha en la proporción entre hombres y mujeres al frente de los hogares era de alrededor 30,4 p.p., hoy la diferencia es de apenas siete puntos porcentuales y en varios departamentos las mujeres ya son mayoría entre quienes sostienen económica y organizativamente a sus familias.</p>
   </div>
 
@@ -743,18 +785,18 @@
     <p>El crecimiento de la jefatura femenina plantea una paradoja, nunca tantas mujeres habían estado al frente de tantas familias en Colombia. Sin embargo, nunca había sido tan evidente la distancia entre la responsabilidad que asumen y los recursos con los que cuentan para ejercerla.</p>
     <p>Este cambio podría leerse como una historia de transformación social y mayor autonomía femenina, pero una mirada más profunda obliga a preguntarse si Colombia está redistribuyendo el liderazgo dentro de los hogares más rápido de lo que está redistribuyendo las oportunidades para quienes los sostienen.</p>
     <p>La pregunta de fondo, entonces, no es quién encabeza los hogares, es qué ocurre cuando una proporción creciente de familias depende de mujeres que siguen enfrentando mayores obstáculos que los hombres para generar ingresos, acumular patrimonio, acceder a sistemas de protección social y conciliar el trabajo remunerado con las responsabilidades de cuidado.</p>
-    <p class="lede-question">En otras palabras, si las mujeres están asumiendo el papel de sostén de los hogares colombianos, ¿por qué la desigualdad entre hombres y mujeres sigue determinando las condiciones bajo las cuales ejercen ese liderazgo?</p>
+    <p class="lede-question">En otras palabras, si las mujeres están asumiendo en mayor medida el papel de sostén de los hogares colombianos, ¿por qué la desigualdad entre hombres y mujeres sigue determinando las condiciones bajo las cuales ejercen ese liderazgo?</p>
   </div>
 </div>
 
 <!-- SECCIÓN 1 -->
 <section class="chapter">
   <div class="col">
-    <p class="eyebrow">El retrato</p>
+    <p class="eyebrow">Quiénes son las mujeres que sostienen la mitad de los hogares colombianos</p>
     <h2 class="chapter-title">Ella es soltera, vive en la ciudad y carga con más personas dependientes</h2>
-    <p class="chapter-sub">Quiénes son las mujeres que sostienen los hogares colombianos.</p>
-    <p>La imagen tradicional del jefe de hogar como un hombre proveedor ya no describe la realidad de millones de familias colombianas. Si hubiera que dibujar el retrato estadístico de una jefa de hogar en Colombia, probablemente aparecería una mujer con hijos, sin pareja y responsable del cuidado de otras personas además de sí misma. No es un caso excepcional, es de hecho, una realidad que comparten millones de mujeres que hoy sostienen económica y familiarmente a cerca de la mitad de la población del país.</p>
-    <p>Los datos permiten construir un perfil bastante claro. Cuando una mujer jefa de hogar vive con otros, no convive en el esquema de pareja típico, vive, predominantemente, en hogares monoparentales. Es decir, ella sola liderando, sus hijos y otros familiares.</p>
+    
+    <p>La imagen tradicional del jefe de hogar como un hombre proveedor ya no describe la realidad colombiana. Si hubiera que dibujar el retrato estadístico de una jefa de hogar en Colombia, probablemente aparecería una mujer con hijos, sin pareja y responsable del cuidado de otras personas además de sí misma. Es una realidad que comparten millones de mujeres que hoy sostienen económica y familiarmente a cerca de la mitad de la población del país.</p>
+    <p>Los resultados de la Encuesta de Calidad de Vida permiten construir un perfil bastante claro. Cuando una mujer jefa de hogar vive con otros, no convive en el esquema de pareja típico, vive, predominantemente, en hogares monoparentales. Es decir, ella sola liderando, sus hijos y otros familiares.</p>
   </div>
 
   <div class="pullstat reveal">
@@ -786,10 +828,26 @@
   <div class="profile reveal">
     <div class="ph">El retrato estadístico de una jefa de hogar</div>
     <div class="row">
-      <div class="it"><b>65,3%</b><span>son solteras</span></div>
-      <div class="it"><b>86,8%</b><span>son madres</span></div>
-      <div class="it"><b>43,2%</b><span>lideran hogares monoparentales</span></div>
-      <div class="it"><b>2,4</b><span>personas a su cargo, en promedio</span></div>
+      <div class="it">
+        <b>65,3%</b>
+        <div class="vs">vs 30,1% hombres</div>
+        <span class="desc">son solteras</span>
+      </div>
+      <div class="it">
+        <b>86,8%</b>
+        <div class="vs" style="background: rgba(107, 107, 107, 0.1); color: var(--gris);">No se les pregunta</div>
+        <span class="desc">son madres</span>
+      </div>
+      <div class="it">
+        <b>43,2%</b>
+        <div class="vs">vs 5,3% hombres</div>
+        <span class="desc">lideran hogares monoparentales</span>
+      </div>
+      <div class="it">
+        <b>2,4</b>
+        <div class="vs">vs 1,6 hombres</div>
+        <span class="desc">personas a su cargo, en promedio</span>
+      </div>
     </div>
   </div>
 
@@ -803,7 +861,7 @@
 <!-- SECCIÓN 2 -->
 <section class="chapter">
   <div class="col">
-    <p class="eyebrow">El tiempo</p>
+    <p class="eyebrow">Trabajo de cuidado no remunerado</p>
     <h2 class="chapter-title">El tiempo de dedicación también define las oportunidades</h2>
     <p></p>
     <p>Las responsabilidades de las jefas de hogar no terminan en la provisión económica. Para una parte importante de ellas, sostener a sus familias también implica responder por las necesidades de quienes requieren mayores niveles de atención y cuidado.</p>
@@ -1102,15 +1160,15 @@
 
       </div>
     </div>
-    <div class="col" style="margin-inline:auto"><figcaption><b>Fuente:</b> Encuesta de Calidad de Vida (ECV) 2025 · Cálculos de la Fundación WWB Colombia.</figcaption></div>
+    <div class="col" style="margin-inline:auto"><figcaption><b>Fuente:</b> Encuesta de Calidad de Vida (ECV) 2025 · Cálculos de la Fundación WWB Colombia. Los porcentajes no suman 100% debido a que son respuesta de selección múltiple.</figcaption></div>
   </figure>
 </section>
 
 <!-- SECCIÓN 3 -->
 <section class="chapter">
   <div class="col">
-    <p class="eyebrow">El hambre</p>
-    <h2 class="chapter-title">Cuando el dinero no alcanza, aparece el hambre</h2>
+    <p class="eyebrow">Aparece el hambre</p>
+    <h2 class="chapter-title">Cuando el dinero no alcanza</h2>
     <p></p>
     <p>Las desigualdades observadas hasta ahora no son únicamente una cuestión de ingresos. También determinan la capacidad real que tienen los hogares para garantizar condiciones mínimas de bienestar.</p>
   </div>
@@ -1162,30 +1220,30 @@
     <p>Cuando se les pregunta directamente si se consideran pobres, las mujeres responden afirmativamente con mayor frecuencia que los hombres. El 39,5% de las jefas de hogar afirma sentirse pobre, frente al 35,9% de los jefes. En términos absolutos, esto significa que cerca de 3,5 millones de mujeres que sostienen hogares consideran que viven en condiciones de pobreza.</p>
   </div>
 
-  <div class="poverty-cards reveal col">
+   <div class="poverty-cards reveal col">
     <div class="poverty-card c1">
       <div>
-        <div class="v">39,5%</div>
+        <div class="v">39,5% <em>vs 35,9% de los jefes</em></div>
         <div class="line"></div>
-        <div class="lab">Pobreza subjetiva</div>
+        <div class="lab">Pobreza Subjetiva</div>
       </div>
-      <p class="desc">De las jefas de hogar se considera pobre a sí misma, reflejando una profunda vulnerabilidad y una acumulación de desventajas cotidianas.</p>
+      <p class="desc">De las jefas de hogar se considera pobre a sí misma.</p>
     </div>
     <div class="poverty-card c2">
       <div>
         <div class="v">32,3% <em>vs 24,5% de los jefes</em></div>
         <div class="line"></div>
-        <div class="lab">Pobreza monetaria</div>
+        <div class="lab">Pobreza Monetaria</div>
       </div>
-      <p class="desc">Afecta de manera desproporcionada a los hogares de jefatura femenina, ensanchando la brecha estructural de género en el país.</p>
+      <p class="desc">Afecta de manera desproporcionada a los hogares de jefatura femenina.</p>
     </div>
     <div class="poverty-card c3">
       <div>
         <div class="v">28,0%</div>
         <div class="line"></div>
-        <div class="lab">Promedio nacional</div>
+        <div class="lab">Promedio Nacional</div>
       </div>
-      <p class="desc">Es la incidencia oficial de pobreza monetaria en todo el territorio colombiano para el año 2025, un parámetro de comparación crítico.</p>
+      <p class="desc">Es la incidencia oficial de pobreza monetaria en todo el territorio colombiano para el año 2025.</p>
     </div>
   </div>
 
@@ -1206,18 +1264,32 @@
     <p>Las brechas son aún más profundas para algunas mujeres. La desigualdad no actúa como una sola fuerza, sino como varias superpuestas. Ser mujer ya implica una desventaja estructural en el acceso a ingresos y recursos. Ser mujer indígena o afrodescendiente, en un hogar que ella sostiene sola, significa cargar con tres capas de exclusión al mismo tiempo —de género, étnica y económica— sin que ninguna política pública haya logrado todavía desmontar esa acumulación.</p>
   </div>
 
-  <div class="inter reveal">
-    <div class="panel indigena">
-      <h3>Jefas indígenas</h3>
-      <div class="stat"><div class="v">67,6%</div><div class="d">enfrenta inseguridad alimentaria en el hogar</div></div>
-      <div class="stat"><div class="v">64,6%</div><div class="d">declara ingresos insuficientes</div></div>
-      <div class="stat"><div class="v">71,2%</div><div class="d">se considera a sí misma en situación de pobreza<em>56,1% en pobreza monetaria</em></div></div>
+  <div class="inter-table reveal">
+    <div class="it-header">
+      <div class="it-cell it-empty"></div>
+      <div class="it-col-title indigena">Jefas indígenas</div>
+      <div class="it-col-title afro">Jefas afrodescendientes</div>
     </div>
-    <div class="panel afro">
-      <h3>Jefas afrodescendientes</h3>
-      <div class="stat"><div class="v">53,7%</div><div class="d">enfrenta inseguridad alimentaria en el hogar</div></div>
-      <div class="stat"><div class="v">51,7%</div><div class="d">declara ingresos insuficientes</div></div>
-      <div class="stat"><div class="v">58,5%</div><div class="d">se considera a sí misma en situación de pobreza<em>38,3% en pobreza monetaria</em></div></div>
+    
+    <div class="it-row" style="--delay: 0.1;">
+      <div class="it-label">Enfrenta inseguridad alimentaria en el hogar</div>
+      <div class="it-val">67,6%</div>
+      <div class="it-val">53,7%</div>
+    </div>
+    
+    <div class="it-row" style="--delay: 0.25;">
+      <div class="it-label">Declara ingresos insuficientes</div>
+      <div class="it-val">64,6%</div>
+      <div class="it-val">51,7%</div>
+    </div>
+    
+    <div class="it-row" style="--delay: 0.4;">
+      <div class="it-label">
+        Se considera a sí misma en situación de pobreza
+        <span class="it-sub">En pobreza monetaria oficial:</span>
+      </div>
+      <div class="it-val">71,2%<span class="it-sub-val">56,1%</span></div>
+      <div class="it-val">58,5%<span class="it-sub-val">38,3%</span></div>
     </div>
   </div>
 
