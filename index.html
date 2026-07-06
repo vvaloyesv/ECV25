@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jefas de hogar: el peso de sostener una familia sin un sistema que las sostenga a ellas — Fundación WWB Colombia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,400..800&family=Libre+Franklin:ital,wght@0,300..800;1,400..600&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --azul:#223581; --azul-2:#192962; --lavanda:#869EE5;
+    --amarillo:#FFB700; --beige:#E8DED6; --hueso:#FAFAFA;
+    --tinta:#1D1D1B; --gris:#6B6B6B;
+    --linea:rgba(29,29,27,.13);
+    --linea-fuerte:rgba(29,29,27,.22);
+    --serif:"Newsreader",Georgia,serif;
+    --display:"Fraunces",Georgia,serif;
+    --sans:"Libre Franklin",-apple-system,Segoe UI,sans-serif;
+    --col:41rem;   /* columna de lectura */
+    --wide:62rem;  /* elementos anchos */
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--hueso); color:var(--tinta);
+    font-family:var(--serif);
+    font-size:20px; line-height:1.72;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  }
+  ::selection{background:var(--amarillo);color:var(--azul-2)}
+
+  /* ---------- barra de lectura ---------- */
+  .progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--amarillo);z-index:60;transition:width .08s linear}
+
+  /* ---------- contenedores ---------- */
+  .wrap{max-width:var(--wide);margin:0 auto;padding:0 28px}
+  .col{max-width:var(--col);margin-inline:auto}
+  .wide{max-width:var(--wide);margin-inline:auto}
+
+  /* ---------- cabecera del artículo ---------- */
+  .art-head{text-align:center;padding:64px 0 30px}
+  .kicker{font-family:var(--sans);font-weight:800;letter-spacing:.22em;font-size:14px;color:var(--azul);text-transform:uppercase;margin:0}
+  .kicker-sub{font-family:var(--sans);font-weight:700;letter-spacing:.28em;font-size:12px;color:var(--tinta);text-transform:uppercase;margin:9px 0 0}
+  .kicker-rule{width:44px;height:3px;background:var(--amarillo);border:0;margin:20px auto 34px}
+  h1.headline{
+    font-family:var(--display);font-optical-sizing:auto;
+    font-weight:600;font-size:clamp(2.5rem,6.2vw,4.65rem);
+    line-height:1.02;letter-spacing:-.018em;margin:0 auto;max-width:16ch;
+    color:var(--tinta)
+  }
+  .dek{font-family:var(--display);font-weight:400;font-style:italic;
+    font-size:clamp(1.15rem,2.4vw,1.55rem);line-height:1.4;color:var(--gris);
+    max-width:34ch;margin:26px auto 0}
+  .meta{font-family:var(--sans);font-size:13px;letter-spacing:.04em;color:var(--gris);margin-top:30px;display:flex;align-items:center;gap:10px}
+  .meta-logo{height:38px;width:auto;display:block}
+  .meta .dot{color:var(--linea-fuerte)}
+
+  /* ---------- cabecera partida a todo el ancho: texto + imagen integrada en degradado ---------- */
+  .hero-split{
+    display:grid;grid-template-columns:1.2fr 1fr;align-items:start;
+    gap:0;width:100%;padding:44px 0 20px;
+  }
+  .hero-split-text{text-align:left;padding-left:clamp(28px,6vw,96px);padding-right:clamp(20px,4vw,48px)}
+  .hero-split-text .kicker-rule{margin:20px 0 30px}
+  .hero-split-text h1.headline{margin:0;max-width:none}
+  .hero-split-text .dek{margin:24px 0 0;max-width:42ch}
+  .hero-split-text .meta{margin-top:26px}
+
+  .hero-split-img{position:relative;overflow:hidden;height:100%;min-height:520px;border-radius:0}
+  .hero-split-img img{display:block;width:100%;height:100%;object-fit:cover;object-position:48% 22%}
+  .hero-split-img::before{
+    content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+    background:linear-gradient(90deg, var(--hueso) 0%, rgba(250,250,250,0) 30%);
+  }
+
+  /* ---------- panel-hero de cifras ---------- */
+  .hero{background:var(--beige);margin-top:14px;border-top:1px solid rgba(34,53,129,.14);border-bottom:1px solid rgba(34,53,129,.14)}
+  .hero .grid{display:grid;grid-template-columns:repeat(3,1fr);max-width:var(--wide);margin:0 auto}
+  .hero .cell{padding:46px 30px;position:relative}
+  .hero .cell + .cell{border-left:1px solid rgba(34,53,129,.16)}
+  .hero .num{font-family:var(--display);font-weight:600;font-size:clamp(2.6rem,5vw,3.9rem);line-height:.95;color:var(--azul);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+  .hero .num .amp{color:var(--amarillo)}
+  .hero .lab{font-family:var(--sans);font-size:14.5px;line-height:1.45;color:var(--tinta);margin-top:14px;max-width:22ch}
+  .hero .tick{width:30px;height:4px;background:var(--amarillo);margin-bottom:20px}
+
+  /* ---------- cuerpo ---------- */
+  .body{padding:62px 0 20px}
+  .body p{margin:0 0 1.35em}
+  .lede-first::first-letter{
+    font-family:var(--display);font-weight:600;color:var(--azul);
+    float:left;font-size:5.0rem;line-height:.74;padding:8px 12px 0 0;
+  }
+  .lede-question{
+    font-family:var(--display);font-weight:500;font-size:clamp(1.5rem,3.2vw,2rem);
+    line-height:1.28;color:var(--azul);letter-spacing:-.01em;
+    margin:1.6em auto 1.4em;padding-left:22px;border-left:4px solid var(--amarillo);
+    max-width:38ch
+  }
+
+  /* ---------- capítulos ---------- */
+  .chapter{padding-top:26px;margin-top:44px}
+  .chapter .col{border-top:1px solid var(--linea);padding-top:40px}
+  .eyebrow{font-family:var(--sans);font-weight:700;letter-spacing:.2em;text-transform:uppercase;font-size:12px;color:var(--azul);display:flex;align-items:center;gap:11px;margin:0 0 20px}
+  .eyebrow::before{content:"";width:22px;height:4px;background:var(--amarillo);display:inline-block}
+  h2.chapter-title{font-family:var(--display);font-weight:600;font-size:clamp(1.75rem,3.8vw,2.6rem);line-height:1.1;letter-spacing:-.015em;margin:0;color:var(--tinta)}
+  .chapter-sub{font-family:var(--sans);font-weight:500;font-size:16px;color:var(--gris);margin:14px 0 30px}
+  .chapter > .col > p:first-of-type,
+  .chapter > .col > .chapter-title + p{margin-top:0}
+
+  /* ---------- figuras / gráficas ---------- */
+  figure.fig{margin:48px auto;max-width:var(--wide)}
+  figure.fig .fig-head{max-width:52rem}
+  .fig-title{font-family:var(--display);font-weight:600;font-size:clamp(1.25rem,2.6vw,1.7rem);line-height:1.18;letter-spacing:-.01em;color:var(--tinta);margin:0}
+  .fig-sub{font-family:var(--sans);font-size:14px;color:var(--gris);margin:8px 0 22px;letter-spacing:.01em}
+  figure.fig img{width:100%;height:auto;display:block}
+  figcaption{font-family:var(--sans);font-size:12.5px;color:var(--gris);margin-top:16px;padding-top:12px;border-top:1px solid var(--linea);letter-spacing:.01em}
+  figcaption b{color:var(--tinta);font-weight:600}
+
+  /* ---------- pull-stat (cuadrado de exaltación rediseñado) ---------- */
+  .pullstat{
+    max-width:var(--wide);
+    margin:60px auto;
+    background:linear-gradient(135deg, var(--azul) 0%, var(--azul-2) 100%);
+    color:var(--hueso);
+    border-radius:12px;
+    padding:50px 60px;
+    position:relative;
+    box-shadow:0 20px 40px rgba(34,53,129,.15);
+    overflow:hidden;
+  }
+  .pullstat::after{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--amarillo)}
+
+  .pullstat-content{display:flex;align-items:center;gap:60px}
+  .pullstat-text{flex:1.2}
+  .pullstat .txt{font-family:var(--serif);font-size:24px;line-height:1.45;color:#fff;margin:0}
+  .pullstat .txt strong{color:var(--amarillo);font-weight:600;font-style:normal}
+
+  .pullstat-stats{
+    flex:1;display:flex;align-items:center;gap:30px;
+    background:rgba(255,255,255,.05);
+    padding:35px 30px;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,.1);
+  }
+  .pullstat-stats .stat-item{flex:1;text-align:center}
+  .pullstat-stats .stat-divider{width:1px;height:70px;background:rgba(255,255,255,.2)}
+  .pullstat .big{font-family:var(--display);font-weight:600;font-size:clamp(2rem,4vw,3rem);line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums;margin-bottom:12px;white-space:nowrap}
+  .pullstat .big.a{color:var(--amarillo)}
+  .pullstat .big.b{color:var(--lavanda)}
+  .pullstat .label{font-family:var(--sans);font-weight:600;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:rgba(250,250,250,.8);line-height:1.4}
+
+  /* ---------- retrato / profile strip ---------- */
+  .profile{max-width:var(--wide);margin:46px auto;border:1px solid var(--linea-fuerte)}
+  .profile .ph{font-family:var(--sans);font-weight:700;letter-spacing:.16em;text-transform:uppercase;font-size:12px;color:var(--azul);padding:16px 24px;border-bottom:1px solid var(--linea);background:rgba(232,222,214,.4)}
+  .profile .row{display:grid;grid-template-columns:repeat(4,1fr)}
+  .profile .it{padding:30px 24px;text-align:center}
+  .profile .it + .it{border-left:1px solid var(--linea)}
+  .profile .it b{display:block;font-family:var(--display);font-weight:600;font-size:2.6rem;line-height:1;color:var(--azul);font-variant-numeric:tabular-nums}
+  .profile .it span{display:block;font-family:var(--sans);font-size:13px;color:var(--gris);margin-top:12px;line-height:1.4}
+
+  /* animación escalonada del retrato: el cuadro ya no se anima como bloque, cada hijo entra por su cuenta */
+  .profile.reveal{opacity:1;transform:none;transition:none}
+  .profile .ph{opacity:0;transition:opacity .6s ease}
+  .profile .it{opacity:0;transform:translateY(25px);transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1)}
+  .profile.in .ph{opacity:1}
+  .profile.in .it{opacity:1;transform:translateY(0)}
+  .profile.in .it:nth-child(1){transition-delay:.1s}
+  .profile.in .it:nth-child(2){transition-delay:.3s}
+  .profile.in .it:nth-child(3){transition-delay:.5s}
+  .profile.in .it:nth-child(4){transition-delay:.7s}
+
+  /* ---------- panel de ingresos ---------- */
+  .income{max-width:var(--wide);margin:48px auto;display:grid;grid-template-columns:1fr auto 1fr;align-items:stretch;border:1px solid var(--linea-fuerte)}
+  .income.reveal{opacity:1;transform:none;transition:none}
+  .income .side{
+    padding:40px 34px;
+    opacity:0;
+    transition:opacity 1s ease,transform 1s cubic-bezier(.2,.8,.2,1);
+  }
+  .income .side .role{font-family:var(--sans);font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:12.5px;margin:0 0 18px}
+  .income .side .amount{font-family:var(--display);font-weight:600;font-size:clamp(2.2rem,4.6vw,3.2rem);line-height:1;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+  .income .side .cap{font-family:var(--sans);font-size:13px;color:var(--gris);margin-top:14px;line-height:1.4}
+  /* ambos paneles fluyen visualmente de izquierda a derecha */
+  .income .jefa{background:var(--azul);color:var(--hueso);transform:translateX(-30px)}
+  .income .jefa .role{color:var(--amarillo)}
+  .income .jefa .cap{color:rgba(250,250,250,.72)}
+  .income .jefe{background:var(--hueso);transform:translateX(-30px)}
+  .income .jefe .role{color:var(--azul)}
+  .income.in .side{opacity:1;transform:translateX(0)}
+  /* la jefa entra casi al instante; el jefe espera medio segundo adicional */
+  .income.in .jefa{transition-delay:.2s}
+  .income.in .jefe{transition-delay:.7s}
+  .income .mid{
+    display:flex;flex-direction:column;justify-content:center;align-items:center;
+    padding:30px 26px;background:var(--beige);border-left:1px solid var(--linea-fuerte);
+    text-align:center;min-width:190px;
+    opacity:0;transform:scale(.85);
+    transition:opacity .8s ease,transform .8s cubic-bezier(.34,1.56,.64,1);
+  }
+  /* el bloque central aparece solo cuando los dos paneles laterales ya están fijos */
+  .income.in .mid{opacity:1;transform:scale(1);transition-delay:1.3s}
+  .income .mid .r{font-family:var(--display);font-weight:600;font-size:clamp(2rem,4vw,2.8rem);color:var(--azul-2);line-height:1;font-variant-numeric:tabular-nums}
+  .income .mid .rl{font-family:var(--sans);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--gris);margin-top:12px;line-height:1.5;max-width:16ch}
+
+  /* ---------- tarjetas de pobreza ---------- */
+  .poverty-cards{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:26px;
+    margin:44px auto;max-width:var(--wide);
+  }
+  .poverty-card{
+    background:var(--hueso);border:1px solid var(--linea-fuerte);border-radius:8px;
+    padding:34px 28px;box-shadow:0 4px 12px rgba(0,0,0,.02);
+    display:flex;flex-direction:column;justify-content:space-between;
+    opacity:0;transform:translateY(22px);
+    transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1);
+  }
+  .poverty-cards.in .poverty-card{opacity:1;transform:translateY(0)}
+
+  .poverty-card.c1{border-top:5px solid var(--azul)}
+  .poverty-card.c2{border-top:5px solid var(--lavanda)}
+  .poverty-card.c3{border-top:5px solid var(--gris)}
+
+  /* retraso secuencial en cascada al hacer scroll */
+  .poverty-cards.in .poverty-card.c1{transition-delay:.1s}
+  .poverty-cards.in .poverty-card.c2{transition-delay:.3s}
+  .poverty-cards.in .poverty-card.c3{transition-delay:.5s}
+
+  .poverty-card .v{font-family:var(--display);font-weight:600;font-size:clamp(2.3rem,3.8vw,2.9rem);line-height:1.05;margin:0}
+  .poverty-card.c1 .v{color:var(--azul)}
+  .poverty-card.c2 .v{color:var(--azul)}
+  .poverty-card.c3 .v{color:var(--tinta)}
+  .poverty-card .v em{font-style:normal;display:block;font-size:.42em;font-weight:500;color:var(--gris);margin-top:8px}
+
+  .poverty-card .line{width:28px;height:3px;background:var(--amarillo);margin:14px 0 16px}
+  .poverty-card .lab{font-family:var(--sans);font-weight:700;font-size:12.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--gris)}
+  .poverty-card .desc{font-family:var(--sans);font-size:13.5px;line-height:1.5;color:var(--tinta);margin:20px 0 0}
+
+  /* ---------- tarjetas comparativas (diseño de impacto con brecha) ---------- */
+  .compare{max-width:var(--wide);margin:50px auto;display:grid;grid-template-columns:1fr 1fr;gap:30px}
+
+  .compare .c{background:var(--hueso);border:1px solid var(--linea-fuerte);border-radius:12px;padding:36px 30px;box-shadow:0 12px 24px rgba(34,53,129,.04);position:relative;overflow:hidden}
+  .compare .c::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:var(--azul)}
+  .compare .c .lab{font-family:var(--serif);font-weight:600;font-style:italic;font-size:18px;line-height:1.4;color:var(--tinta);margin:0 0 35px;text-align:center;min-height:3em}
+
+  .compare-stats{display:flex;align-items:center;justify-content:center;gap:15px;position:relative}
+
+  .c-stat{flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;z-index:2;background:var(--hueso);padding:0 5px}
+  .c-stat .v{font-family:var(--display);font-weight:600;line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums;opacity:0;transform:translateY(15px);transition:all .6s cubic-bezier(.2,.8,.2,1)}
+  .compare.in .c-stat .v{opacity:1;transform:translateY(0)}
+
+  /* tamaño protagonista para la jefa, más discreto para el jefe */
+  .c-stat.f .v{color:var(--azul);font-size:clamp(2.4rem,4vw,3.2rem)}
+  .c-stat.m .v{color:var(--lavanda);font-size:clamp(1.8rem,3vw,2.2rem)}
+
+  .c-stat .n{font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-top:10px}
+  .c-stat.f .n{color:var(--azul)}
+  .c-stat.m .n{color:var(--gris)}
+
+  /* píldora amarilla central (la brecha) con línea horizontal de fondo */
+  .c-gap{display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;z-index:1}
+  .c-gap::before{content:"";position:absolute;left:-40px;right:-40px;top:50%;height:1px;background:var(--linea-fuerte);z-index:0}
+  .c-gap .badge{position:relative;z-index:1;background:var(--amarillo);color:var(--azul-2);font-family:var(--sans);font-weight:800;font-size:15px;padding:6px 14px;border-radius:20px;box-shadow:0 4px 10px rgba(255,183,0,.25);white-space:nowrap;opacity:0;transform:scale(.8);transition:all .5s cubic-bezier(.34,1.56,.64,1)}
+  .compare.in .c-gap .badge{opacity:1;transform:scale(1)}
+  .c-gap .badge span{font-size:10px;text-transform:uppercase;letter-spacing:.05em;opacity:.8;margin-right:4px;font-weight:600}
+
+  /* tiempos de animación: primero la mujer, luego el hombre, luego la brecha */
+  .compare.in .c-stat.f .v{transition-delay:.1s}
+  .compare.in .c-stat.m .v{transition-delay:.3s}
+  .compare.in .c-gap .badge{transition-delay:.6s}
+
+  /* ---------- número con transición de aparición (usado en pull-stat) ---------- */
+  .number-reveal{
+    display:inline-block;
+    opacity:0;
+    transform:translateY(20px) scale(.85);
+    transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1);
+  }
+  .pullstat.in .number-reveal{opacity:1;transform:translateY(0) scale(1)}
+
+  /* ---------- split-chart: razones para estar fuera del mercado laboral ---------- */
+  .split-chart{max-width:var(--wide);margin:44px auto}
+  .sc-tabs{display:none;gap:10px;margin-bottom:28px}
+  .sc-tab-btn{
+    flex:1;font-family:var(--sans);font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+    font-size:12.5px;color:var(--gris);background:var(--hueso);border:1px solid var(--linea-fuerte);
+    border-radius:30px;padding:11px 16px;cursor:pointer;transition:background .25s ease,color .25s ease,border-color .25s ease;
+  }
+  .sc-tab-btn.active{background:var(--azul);border-color:var(--azul);color:var(--hueso)}
+
+  .sc-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px}
+  .sc-col{min-width:0}
+  .sc-header{margin-bottom:22px;padding-bottom:12px;border-bottom:2px solid var(--linea-fuerte)}
+  .sc-header h4{font-family:var(--display);font-weight:600;font-size:1.35rem;margin:0;letter-spacing:-.01em}
+  .sc-col.f .sc-header h4{color:var(--azul)}
+  .sc-col.m .sc-header h4{color:var(--lavanda)}
+
+  .sc-group{margin-bottom:26px}
+  .sc-group:last-child{margin-bottom:0}
+  .sc-group.highlight{background:rgba(232,222,214,.4);border-radius:10px;padding:18px 18px 6px}
+  .sc-group-title{
+    font-family:var(--sans);font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+    font-size:11px;color:var(--gris);margin:0 0 16px;
+    padding-bottom:8px;border-bottom:1px solid transparent;
+  }
+  /* la categoría destacada (cuidado y oficios del hogar) se subraya en amarillo */
+  .sc-group.highlight .sc-group-title{color:var(--azul);border-bottom-color:var(--amarillo)}
+  .sc-item{margin-bottom:16px}
+  .sc-item:last-child{margin-bottom:0}
+  .sc-label{font-family:var(--sans);font-size:13px;line-height:1.35;color:var(--tinta);margin-bottom:7px}
+  .sc-bar-wrap{display:flex;align-items:center;gap:10px;height:10px}
+  .sc-bar{
+    height:10px;border-radius:6px;flex:0 0 auto;
+    transition:width 1s cubic-bezier(.2,.8,.2,1);
+  }
+  .split-chart:not(.in) .sc-bar{width:0!important}
+  .sc-col.f .sc-bar{background:var(--azul)}
+  .sc-col.m .sc-bar{background:var(--lavanda)}
+  .sc-val{font-family:var(--sans);font-weight:700;font-size:12.5px;color:var(--tinta);white-space:nowrap}
+  /* los valores numéricos heredan el color representativo de cada columna */
+  .sc-col.f .sc-val{color:var(--azul)}
+  .sc-col.m .sc-val{color:var(--tinta)}
+
+  @media (max-width:820px){
+    .sc-tabs{display:flex}
+    .sc-grid{grid-template-columns:1fr}
+    .sc-col{display:none}
+    .sc-col.active{display:block}
+  }
+
+  /* ---------- lista de datos (alimentos) ---------- */
+  .food-list{
+    margin:35px auto 40px;
+    display:flex;flex-direction:column;gap:18px;
+    max-width:var(--col);
+  }
+  .food-item{
+    display:flex;align-items:center;gap:24px;
+    padding:22px 26px;
+    background:var(--hueso);border:1px solid var(--linea-fuerte);border-radius:8px;
+    box-shadow:0 4px 12px rgba(0,0,0,.02);
+    opacity:0;transform:translateY(18px);
+    transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1);
+  }
+  .food-item .v-group{display:flex;flex-direction:column;align-items:flex-start;min-width:110px}
+  .food-item .v{font-family:var(--display);font-weight:600;font-size:2.5rem;color:var(--azul);line-height:1}
+  .food-item .line{width:28px;height:3px;background:var(--amarillo);margin-top:8px}
+  .food-item .t{font-family:var(--sans);font-size:13.5px;line-height:1.45;color:var(--tinta)}
+
+  .food-list.in .food-item{opacity:1;transform:translateY(0)}
+  /* el primer dato aparece casi de inmediato; los siguientes esperan un cuarto de segundo cada uno */
+  .food-list.in .food-item:nth-child(1){transition-delay:.1s}
+  .food-list.in .food-item:nth-child(2){transition-delay:.35s}
+  .food-list.in .food-item:nth-child(3){transition-delay:.6s}
+  .food-list.in .food-item:nth-child(4){transition-delay:.85s}
+
+  /* ---------- interseccionalidad ---------- */
+  .inter{max-width:var(--wide);margin:44px auto;display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .inter .panel{border:1px solid var(--linea-fuerte);padding:0;overflow:hidden}
+  .inter .panel h3{font-family:var(--sans);font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:13px;color:var(--hueso);background:var(--azul);margin:0;padding:16px 26px}
+  .inter .panel.afro h3{background:var(--azul-2)}
+  .inter .stat{padding:22px 26px;display:flex;gap:20px;align-items:baseline}
+  .inter .stat + .stat{border-top:1px solid var(--linea)}
+  .inter .stat .v{font-family:var(--display);font-weight:600;font-size:2.3rem;line-height:1;color:var(--azul);flex:0 0 auto;min-width:3.4ch;font-variant-numeric:tabular-nums}
+  .inter .stat .d{font-family:var(--sans);font-size:14px;line-height:1.45;color:var(--tinta)}
+  .inter .stat .d em{font-style:normal;color:var(--gris);display:block;margin-top:3px;font-size:13px}
+
+  /* ---------- lista resumen final ---------- */
+  .summary{max-width:var(--col);margin:40px auto}
+  .summary li{list-style:none;position:relative;padding-left:30px;margin:0 0 16px;font-family:var(--serif);font-size:18px;line-height:1.5}
+  .summary{padding:0}
+  .summary li::before{content:"";position:absolute;left:0;top:.62em;width:12px;height:12px;background:var(--amarillo);border-radius:1px}
+  .summary li b{color:var(--azul);font-weight:700}
+
+  /* ---------- cierre ---------- */
+  .closing{max-width:var(--col);margin:6px auto 0;font-family:var(--display);font-weight:500;font-style:italic;font-size:clamp(1.4rem,3vw,1.85rem);line-height:1.36;color:var(--azul);letter-spacing:-.01em}
+
+  /* ---------- pie ---------- */
+  footer{background:var(--azul);color:rgba(250,250,250,.86);margin-top:80px;padding:52px 0 46px}
+  footer .wrap{display:flex;flex-wrap:wrap;gap:40px;justify-content:space-between;align-items:flex-start}
+  footer img{height:44px;width:auto}
+  footer .src{font-family:var(--sans);font-size:13px;line-height:1.7;max-width:52ch}
+  footer .src b{color:var(--hueso);font-weight:600}
+  footer a{color:var(--amarillo);text-decoration:none}
+  footer a:hover{text-decoration:underline}
+
+  /* ---------- reveal ---------- */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  a:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--amarillo);outline-offset:3px}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:820px){
+    body{font-size:18px}
+    .hero-split{grid-template-columns:1fr;padding:48px 0 8px;gap:28px}
+    .hero-split-text{text-align:center;padding-left:28px;padding-right:28px}
+    .hero-split-text .kicker-rule{margin:20px auto 30px}
+    .hero-split-text h1.headline{margin:0 auto;max-width:20ch}
+    .hero-split-text .dek{margin:24px auto 0}
+    .hero-split-text .meta{justify-content:center}
+    .hero-split-img{order:2;min-height:320px}
+    .hero-split-img::before{background:linear-gradient(180deg, var(--hueso) 0%, rgba(250,250,250,0) 30%)}
+    .hero .grid{grid-template-columns:1fr}
+    .hero .cell + .cell{border-left:0;border-top:1px solid rgba(34,53,129,.16)}
+    .income{grid-template-columns:1fr}
+    .income .mid{order:-1}
+    .compare,.inter,.poverty-cards{grid-template-columns:1fr}
+    .profile .row{grid-template-columns:1fr 1fr}
+    .profile .it:nth-child(3){border-left:0}
+    .profile .it:nth-child(n+3){border-top:1px solid var(--linea)}
+    .pullstat{padding:36px 28px}
+    .pullstat-content{flex-direction:column;gap:28px}
+    .pullstat-stats{width:100%}
+  }
+  @media (max-width:600px){
+    .food-item{flex-direction:row;align-items:center;gap:20px;padding:18px 20px}
+    .food-item .v-group{min-width:75px}
+    .food-item .v{font-size:2rem}
+    .food-item .t{font-size:13.5px}
+  }
+  @media (max-width:480px){
+    .wrap{padding:0 20px}
+    .hero-split-img{min-height:260px}
+    .compare .c{padding:28px 18px}
+    .compare-stats{gap:8px}
+    .c-gap::before{left:-16px;right:-16px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+    .progress{transition:none}
+    .profile .ph,.profile .it{opacity:1;transform:none;transition:none}
+    .income .side,.income .mid{opacity:1;transform:none;transition:none}
+  }
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+
+<!-- CABECERA -->
+<div class="hero-split">
+  <div class="hero-split-text">
+    <p class="kicker">Versión 3</p>
+    <p class="kicker-sub">Nota periodística</p>
+    <hr class="kicker-rule">
+    <h1 class="headline">Las mujeres al frente de los hogares colombianos: El peso de sostener una familia sin un sistema que las sostenga a ellas</h1>
+    <p class="dek">Casi la mitad de Colombia vive en hogares liderados por mujeres</p>
+    <p class="meta"><img class="meta-logo" src="assets/logos/WWB_Logotipo_Duotono.png" alt="Fundación WWB Colombia"><span class="dot">•</span>Junio de 2026</p>
+  </div>
+  <div class="hero-split-img">
+    <img src="assets/imagenes/imagen-2.png" alt="Ilustración en tinta de una mujer sonriendo mientras abraza y besa la frente de un niño.">
+  </div>
+</div>
+
+<!-- PANEL HERO DE CIFRAS -->
+<section class="hero reveal">
+  <div class="grid">
+    <div class="cell">
+      <div class="tick"></div>
+      <div class="num"><span class="counter" data-target="46.4">0,0</span><span class="amp">%</span></div>
+      <div class="lab">de los hogares del país tienen jefatura femenina</div>
+    </div>
+    <div class="cell">
+      <div class="tick"></div>
+      <div class="num"><span class="counter" data-target="8.8">0,0</span> <span style="font-size:.5em;font-weight:400;color:var(--tinta)">millones</span></div>
+      <div class="lab">de hogares están liderados por mujeres</div>
+    </div>
+    <div class="cell">
+      <div class="tick"></div>
+      <div class="num"><span class="counter" data-target="24.6">0,0</span> <span style="font-size:.5em;font-weight:400;color:var(--tinta)">millones</span></div>
+      <div class="lab">de personas viven en ellos, casi media Colombia</div>
+    </div>
+  </div>
+</section>
+
+<!-- CUERPO -->
+<article>
+<div class="body">
+  <div class="col">
+    <p class="lede-first">La mujer que hoy encabeza un hogar en Colombia probablemente vive en una ciudad, es madre; en muchos casos no tiene pareja y asume sola buena parte de las responsabilidades económicas de su familia. También es probable que en su casa viva un niño pequeño o una persona adulta mayor que requiere cuidados permanentes. Y, más que los hombres en la misma posición, siente que el dinero no alcanza, que su situación económica se ha deteriorado y que alimentar a su hogar es cada vez más difícil.</p>
+    <p>Lejos de ser una realidad desde el margen, este perfil representa a millones de mujeres. De acuerdo con la Encuesta de Calidad de Vida 2025, en Colombia, 8,8 millones de hogares están liderados por mujeres, el equivalente al 46,4% del total nacional. En ellos viven 24,6 millones de personas, casi la mitad de la población del país.</p>
+    <p>Son casi nueve millones de hogares en los que una mujer sostiene el día a día. No una pareja, no un hombre: ella. Es quien responde por el arriendo, organiza los cuidados, acompaña las tareas escolares, paga las cuentas del mes y toma las decisiones necesarias para que el hogar siga adelante.</p>
+    <p>El cambio ha sido acelerado. Hace poco más de una década, en el 2016, la brecha en la proporción entre hombres y mujeres al frente de los hogares era de alrededor 30,4 p.p., hoy la diferencia es de apenas siete puntos porcentuales y en varios departamentos las mujeres ya son mayoría entre quienes sostienen económica y organizativamente a sus familias.</p>
+  </div>
+
+  <figure class="fig reveal">
+    <div class="fig-head col" style="margin-inline:auto">
+      <h3 class="fig-title">En menos de una década, la jefatura femenina pasó de un tercio a casi la mitad de los hogares</h3>
+      <p class="fig-sub">Hogares por sexo de la jefatura, % del total nacional · 2010–2025</p>
+    </div>
+    <img src="assets/graficos/c1_crecimiento.png" alt="Gráfica de líneas: entre 2010 y 2025 la jefatura femenina sube de 32,7% a 46,4% mientras la masculina baja de 67,3% a 53,6%, acercándose ambas a la paridad.">
+    <div class="col" style="margin-inline:auto"><figcaption><b>Fuente:</b> Encuesta de Calidad de Vida (ECV) 2025 · Cálculos de la Fundación WWB Colombia. No se cuenta con información del 2017</figcaption></div>
+  </figure>
+
+  <div class="col">
+    <p>A primera vista, estas cifras podrían interpretarse como una señal de autonomía y avance para las mujeres. Sin embargo, una mirada más detallada revela una realidad más compleja. El aumento de la jefatura femenina coincide con mayores niveles de monoparentalidad, mayores cargas de cuidado, menores ingresos y una mayor exposición a la pobreza y la inseguridad alimentaria.</p>
+    <p>El crecimiento de la jefatura femenina plantea una paradoja, nunca tantas mujeres habían estado al frente de tantas familias en Colombia. Sin embargo, nunca había sido tan evidente la distancia entre la responsabilidad que asumen y los recursos con los que cuentan para ejercerla.</p>
+    <p>Este cambio podría leerse como una historia de transformación social y mayor autonomía femenina, pero una mirada más profunda obliga a preguntarse si Colombia está redistribuyendo el liderazgo dentro de los hogares más rápido de lo que está redistribuyendo las oportunidades para quienes los sostienen.</p>
+    <p>La pregunta de fondo, entonces, no es quién encabeza los hogares, es qué ocurre cuando una proporción creciente de familias depende de mujeres que siguen enfrentando mayores obstáculos que los hombres para generar ingresos, acumular patrimonio, acceder a sistemas de protección social y conciliar el trabajo remunerado con las responsabilidades de cuidado.</p>
+    <p class="lede-question">En otras palabras, si las mujeres están asumiendo el papel de sostén de los hogares colombianos, ¿por qué la desigualdad entre hombres y mujeres sigue determinando las condiciones bajo las cuales ejercen ese liderazgo?</p>
+  </div>
+</div>
+
+<!-- SECCIÓN 1 -->
+<section class="chapter">
+  <div class="col">
+    <p class="eyebrow">El retrato</p>
+    <h2 class="chapter-title">Ella es soltera, vive en la ciudad y carga con más personas dependientes</h2>
+    <p class="chapter-sub">Quiénes son las mujeres que sostienen los hogares colombianos.</p>
+    <p>La imagen tradicional del jefe de hogar como un hombre proveedor ya no describe la realidad de millones de familias colombianas. Si hubiera que dibujar el retrato estadístico de una jefa de hogar en Colombia, probablemente aparecería una mujer con hijos, sin pareja y responsable del cuidado de otras personas además de sí misma. No es un caso excepcional, es de hecho, una realidad que comparten millones de mujeres que hoy sostienen económica y familiarmente a cerca de la mitad de la población del país.</p>
+    <p>Los datos permiten construir un perfil bastante claro. Cuando una mujer jefa de hogar vive con otros, no convive en el esquema de pareja típico, vive, predominantemente, en hogares monoparentales. Es decir, ella sola liderando, sus hijos y otros familiares.</p>
+  </div>
+
+  <div class="pullstat reveal">
+    <div class="pullstat-content">
+      <div class="pullstat-text">
+        <p class="txt">Entre las mujeres que encabezan hogares, el <strong>43,2%</strong> lidera hogares monoparentales, una proporción <strong>ocho veces superior</strong> a la observada entre los hombres (5,3%).</p>
+      </div>
+      <div class="pullstat-stats">
+        <div class="stat-item">
+          <div class="big a"><span class="number-reveal">43,2</span>%</div>
+          <div class="label">Jefas en hogares<br>monoparentales</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <div class="big b"><span class="number-reveal">5,3</span>%</div>
+          <div class="label">Jefes en hogares<br>monoparentales</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <p>La diferencia es significativa porque detrás de ella hay dos formas muy distintas de asumir las responsabilidades familiares. Mientras la mayoría de los hombres jefes de hogar vive en hogares biparentales, donde las tareas económicas y de cuidado pueden compartirse con otra persona adulta, entre las mujeres es mucho más frecuente encontrar hogares donde una sola persona debe responder por el bienestar de toda la familia.</p>
+    <p>El estado civil ayuda a entender esta realidad. El 65,3% de las jefas de hogar son solteras, una proporción que entre los hombres se reduce al 30,1%. En contraste, mientras apenas el 12,2% de las mujeres está casada y el 22,4% vive en unión libre, entre los hombres estas proporciones ascienden al 31,8% y al 38,1%, respectivamente. Aunque la jefatura femenina incluye trayectorias diversas, los datos muestran que una parte importante de las mujeres que sostienen hogares lo hace sin una pareja con quien compartir las responsabilidades cotidianas.</p>
+    <p>Además, una jefa soltera tiene en promedio 2,4 personas a su cargo. Un jefe soltero, apenas 1,6. La brecha significa que las mujeres en solitario tienen, sistemáticamente, más bocas que alimentar y más cuerpos que cuidar que los hombres en la misma situación de soltería.</p>
+    <p>La maternidad termina de completar este retrato. El 86,8% de las jefas de hogar son madres, lo que equivale a más de 7,6 millones de mujeres que, además de asumir la principal responsabilidad económica de sus familias, tienen hijos.</p>
+  </div>
+
+  <div class="profile reveal">
+    <div class="ph">El retrato estadístico de una jefa de hogar</div>
+    <div class="row">
+      <div class="it"><b>65,3%</b><span>son solteras</span></div>
+      <div class="it"><b>86,8%</b><span>son madres</span></div>
+      <div class="it"><b>43,2%</b><span>lideran hogares monoparentales</span></div>
+      <div class="it"><b>2,4</b><span>personas a su cargo, en promedio</span></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <p>Encabezar un hogar implica mucho más que aportar los ingresos principales. También supone garantizar el cuidado, la crianza, la organización cotidiana y el bienestar de quienes dependen de él. Los datos muestran que mujeres y hombres asumen cada vez más este rol, pero no lo hacen en las mismas condiciones.</p>
+    <p>No es menor que el bienestar de cerca de la mitad de las personas en Colombia dependa de mujeres que, con frecuencia, enfrentan estas responsabilidades en solitario. En los hogares encabezados por mujeres viven 24,6 millones de personas, lo que significa que las oportunidades, la seguridad económica y las condiciones de vida de millones de niños, niñas, adolescentes, personas mayores y adultos están estrechamente ligadas a la capacidad de estas mujeres para sostener sus hogares.</p>
+    <p>Desde una perspectiva de desarrollo, esta realidad resulta particularmente relevante. Los hogares son espacios donde se crean los primeros habilitantes para generar ingresos; son ese lugar donde se producen cuidados, se forman capacidades, se acumulan activos y se construyen las oportunidades que determinan el bienestar presente y futuro de las personas. Cuando la responsabilidad de sostener ese hogar recae principalmente sobre una sola persona, también se concentran sobre ella buena parte de los riesgos asociados a su bienestar, por lo tanto, subyace la mayor vulnerabilidad intrínseca.</p>
+  </div>
+</section>
+
+<!-- SECCIÓN 2 -->
+<section class="chapter">
+  <div class="col">
+    <p class="eyebrow">El tiempo</p>
+    <h2 class="chapter-title">El tiempo de dedicación también define las oportunidades</h2>
+    <p></p>
+    <p>Las responsabilidades de las jefas de hogar no terminan en la provisión económica. Para una parte importante de ellas, sostener a sus familias también implica responder por las necesidades de quienes requieren mayores niveles de atención y cuidado.</p>
+    <p>Más de la mitad de los hogares encabezados por mujeres (52,2%) convive con al menos una persona menor de cinco años o mayor de 60 años. Entre los hogares liderados por hombres esta proporción se reduce al 47,2%. Aunque la diferencia puede parecer moderada, equivale a cientos de miles de hogares adicionales donde las jefas deben combinar la responsabilidad de generar ingresos con la atención de personas que requieren mayores niveles de cuidado.</p>
+    <p>En total, cerca de 4,6 millones de hogares con jefatura femenina combinan la responsabilidad de generar ingresos con la atención cotidiana de personas que requieren mayores niveles de apoyo y acompañamiento.</p>
+    <p>De nuevo con tendencia a hacerlo en solitario, la presencia de niños pequeños y adultos mayores no implica necesariamente que las mujeres sean las únicas cuidadoras. Sin embargo, los datos anteriores permiten entender por qué la carga de cuidado adquiere una relevancia particular en los hogares encabezados por mujeres. Con mayor frecuencia que los hombres, ellas lideran hogares monoparentales, viven sin pareja y son madres. En ese contexto, las posibilidades de redistribuir las responsabilidades familiares suelen ser más limitadas.</p>
+    <p>El tiempo es uno de los recursos más importantes para construir bienestar. La posibilidad de acceder a mejores empleos, continuar estudiando, emprender, participar en espacios comunitarios o simplemente descansar depende, en buena medida, de cuánto tiempo queda disponible una vez cubiertas las necesidades básicas del hogar. Cuando una misma persona concentra la responsabilidad de proveer recursos y responder por el cuidado de quienes dependen de ella, las restricciones de tiempo se convierten también en restricciones para generar ingresos, acumular patrimonio y ampliar sus oportunidades futuras.</p>
+    <p>Si el bienestar de cerca de la mitad de la población colombiana depende de mujeres que, con frecuencia, enfrentan solas la responsabilidad de sostener sus hogares, la siguiente pregunta es inevitable:</p>
+    <p class="lede-question">¿Disponen de los mismos recursos económicos que los hombres para asumir esa tarea?</p>
+  </div>
+
+  <div class="income reveal">
+    <div class="side jefa">
+      <p class="role">Jefa de hogar</p>
+      <div class="amount">$1.480.000</div>
+      <p class="cap">ingreso per cápita mensual<br>promedio · 2025</p>
+    </div>
+    <div class="mid">
+      <div class="r">$1,18</div>
+      <div class="rl">recibe él por cada $1 de ella</div>
+    </div>
+    <div class="side jefe">
+      <p class="role">Jefe de hogar</p>
+      <div class="amount">$1.750.000</div>
+      <p class="cap">ingreso per cápita mensual<br>promedio · 2025</p>
+    </div>
+  </div>
+
+  <div class="col">
+    <p>Los datos sugieren que no. Aunque las mujeres asumen cada vez más la responsabilidad económica de sus familias, continúan haciéndolo con menos recursos. En 2025, el ingreso per cápita promedio en los hogares encabezados por hombres alcanzó los $1,75 millones mensuales, mientras que en los hogares liderados por mujeres fue de $1,48 millones. Esto significa que, por cada 100 pesos disponibles para una persona en un hogar con jefatura masculina, en un hogar con jefatura femenina hay apenas 84. La diferencia supera los $272 mil pesos mensuales por persona.</p>
+    <p>La brecha no aparece únicamente en los promedios. También se refleja en la forma como hombres y mujeres se distribuyen a lo largo de la escala de ingresos. En el decil más pobre del país, el 54% de los hogares está encabezado por mujeres, mientras que los hombres representan el 46%. Sin embargo, esta relación se invierte progresivamente a medida que aumentan los ingresos. En el decil más alto, donde se concentra la población con mayores recursos económicos, las mujeres representan apenas el 41,3% de las jefaturas, frente al 58,7% de los hombres.</p>
+    <p>Las mujeres son mayoría entre los hogares más pobres, pero minoría entre los más ricos. La jefatura femenina no se distribuye de forma homogénea en la escala social; se concentra, especialmente, en los eslabones más frágiles.</p>
+  </div>
+
+  <figure class="fig reveal">
+    <div class="fig-head col" style="margin-inline:auto">
+      <h3 class="fig-title">Las mujeres son mayoría entre los hogares más pobres y minoría entre los más ricos</h3>
+      <p class="fig-sub">Distribución de la jefatura del hogar por sexo, según decil de ingreso · 2025</p>
+    </div>
+    <img src="assets/graficos/c2_deciles.png" alt="Barras apiladas: en el decil más pobre las jefas son el 54% y los jefes el 46%; en el decil más rico las jefas caen a 41,3% y los jefes suben a 58,7%.">
+    <div class="col" style="margin-inline:auto"><figcaption><b>Fuente:</b> Encuesta de Calidad de Vida (ECV) 2025 · Cálculos de la Fundación WWB Colombia.</figcaption></div>
+  </figure>
+
+  <div class="col">
+    <p>No sorprende entonces que el 34,6% de las jefas de hogar afirme que los ingresos de su hogar no alcanzan para cubrir los gastos mínimos, frente al 28,4% de los hombres. Los hogares que apenas logran cubrir sus necesidades básicas suelen tener menos capacidad para acumular activos, responder a choques económicos o financiar inversiones que mejoren su bienestar futuro. Cuando esta situación afecta con mayor intensidad a quienes sostienen cerca de la mitad de la población del país, las consecuencias trascienden la situación individual de las mujeres y terminan condicionando las oportunidades de millones de personas que dependen de ellas.</p>
+    <p>En la escala más alta de satisfacción —entre 9 y 10 puntos sobre 10— se ubica el 23,4% de los jefes de hogar, frente al 19,4% de las jefas. Por el contrario, las valoraciones más bajas son más frecuentes entre las mujeres, una señal de que las dificultades económicas no solo se expresan en los ingresos disponibles, sino también en la percepción de qué tan suficientes resultan para sostener el hogar.</p>
+  </div>
+
+  <div class="compare reveal">
+    <div class="c">
+      <p class="lab">Afirma que los ingresos del hogar no alcanzan para cubrir los gastos mínimos</p>
+      <div class="compare-stats">
+        <div class="c-stat f">
+          <div class="v">34,6%</div>
+          <div class="n">Jefas</div>
+        </div>
+        <div class="c-gap">
+          <div class="badge"><span>Brecha</span> +6,2 pp</div>
+        </div>
+        <div class="c-stat m">
+          <div class="v">28,4%</div>
+          <div class="n">Jefes</div>
+        </div>
+      </div>
+    </div>
+    <div class="c">
+      <p class="lab">Se ubica en la satisfacción más alta con su vida (9 a 10 puntos)</p>
+      <div class="compare-stats">
+        <div class="c-stat f">
+          <div class="v">19,4%</div>
+          <div class="n">Jefas</div>
+        </div>
+        <div class="c-gap">
+          <div class="badge"><span>Brecha</span> -4,0 pp</div>
+        </div>
+        <div class="c-stat m">
+          <div class="v">23,4%</div>
+          <div class="n">Jefes</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <p>Este año se implementó una pregunta en la Encuesta de Calidad de Vida que permite responder ¿por qué las personas que no están trabajando permanecen fuera del mercado laboral?</p>
+    <p>Las respuestas revelan una diferencia profunda entre hombres y mujeres. Entre los hombres que no trabajan, las razones predominantes están asociadas al ciclo de vida. El 37% se encuentra pensionado y el 31,7% se considera adulto mayor. En conjunto, cerca de siete de cada diez hombres fuera del mercado laboral dejaron de trabajar porque llegaron al final de su trayectoria laboral.</p>
+    <p>Entre las mujeres, la historia es distinta. Aunque la edad y la jubilación también tienen peso, las principales razones para permanecer fuera del mercado laboral están relacionadas con el trabajo de cuidado y las tareas domésticas. El 45,2% señala que se dedica a oficios del hogar como cocinar, limpiar o lavar ropa. A esto se suma un 12,3% que permanece fuera del mercado laboral para cuidar niños mayores de cinco años y otro 10,1% que lo hace para atender niños menores de cinco años.</p>
+    <p>Entre los hombres, en contraste, estas razones son marginales: apenas el 12% menciona los oficios domésticos y menos del 2% reporta responsabilidades de cuidado infantil o de personas dependientes.</p>
+  </div>
+
+  <figure class="fig reveal">
+    <div class="fig-head col" style="margin-inline:auto">
+      <h3 class="fig-title">Los hombres salen del mercado laboral por el ciclo de vida; las mujeres, por el cuidado</h3>
+      <p class="fig-sub">Principal razón para permanecer fuera del mercado laboral, por sexo · 2025</p>
+    </div>
+    <div class="split-chart reveal">
+
+      <!-- Segmented control para celulares (se activa vía CSS) -->
+      <div class="sc-tabs">
+        <button class="sc-tab-btn active" data-tab="f" onclick="switchScTab('f')">Mujeres</button>
+        <button class="sc-tab-btn" data-tab="m" onclick="switchScTab('m')">Hombres</button>
+      </div>
+
+      <div class="sc-grid">
+
+        <!-- COLUMNA MUJERES -->
+        <div class="sc-col f active">
+          <div class="sc-header">
+            <h4>Mujeres</h4>
+          </div>
+
+          <div class="sc-group highlight">
+            <div class="sc-group-title">Labores de cuidado y oficios del hogar</div>
+            <div class="sc-item">
+              <div class="sc-label">Por realizar otros oficios del hogar (cocinar, lavar ropa, barrer, etc.)</div>
+              <div class="sc-bar-wrap"><div class="sc-bar" style="width: calc(45.2% * 1.7); transition-delay: 0.1s"></div><span class="sc-val">45,2%</span></div>
+            </div>
+            <div class="sc-item">
+              <div class="sc-label">Por cuidar niños de 5 años y más</div>
+              <div class="sc-bar-wrap"><div class="sc-bar" style="width: calc(12.3% * 1.7); transition-delay: 0.2s"></div><span class="sc-val">12,3%</span></div>
+            </div>
+            <div class="sc-item">
+              <div class="sc-label">Por cuidar de niños menores de 5 años</div>
+              <div class="sc-bar-wrap"><div class="sc-bar" style="width: calc(10.1% * 1.7); transition-delay: 0.3s"></div><span class="sc-val">10,1%</span></div>
+            </div>
+            <div class="sc-item">
+              <div class="sc-label">Por cuidar de una persona mayor</div>
+              <div class="sc-bar-wrap"><div class="sc-bar" style="width: calc(2.4% * 1.7); transition-delay: 0.4s"></div><span class="sc-val">2,4%</span></div>
+            </div>
+            <div class="sc-item">
+              <div class="sc-label">Por cuidar de una persona con discapacidad</div>
+              <div class="sc-bar-wrap"><div class="sc-bar" style="width: calc(2.3% * 1.7); transition-delay: 0.5s"></div><span class="sc-val">2,3%</span></div>
+            </div>
+          </div>
+
+          <div class="sc-group">
+            <div class="sc-group-title">Ciclo de vida</div>
+            <div class="sc-item">
+              <div class="sc-label">Porque es un adulto mayor</div>
+              <div class="sc-bar-wrap"><div class="sc-bar" style="width: calc(24.5% * 1.7); transition-delay: 0.6s"></div><span class="sc-val">24,5%</span></div>
+            </div>
+            <div class="sc-item">
+              <div class="sc-label">Porque ya se pensionó</div>
+              <div class="sc-bar-wrap"><div class="sc-bar" style="width: calc(15.3% * 1.7); transition-delay: 0.7s"></div><span class="sc-val">15,3%</span></div>
+            </div>
+          </div>
+
+          <div class="sc-group">
+            <div class="sc-group-title">Otras razones</div>
+            <div class="sc-item">
+              <div class="sc-label">No desea trabajar</div>
+              <div class="sc-bar-wrap"><div class="sc-bar" style="width: calc(6.9% * 1.7); transition-delay: 0.8s"></div><span class="sc-val">6,9%</span></div>
+            </div>
+            <div class="sc-item">
+              <div class="sc-label">Porque está estudiando</div>
+              <div class="sc-bar-wrap"><div class="sc-bar" style="width: calc(2.0% * 1.7); transition-delay: 0.9s"></div><span class="sc-val">2,0%</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- COLUMNA HOMBRES -->
+        <div class="sc-col m">
+          <div class="sc-header">
+            <h4>Hombres</h4>
+          </div>
+
+          <div class="sc-group highlight">
+            <div class="sc-group-title">Labores de cuidado y oficios del hogar</div>
+            <div class="sc-item">
+              <div class="sc-label">Por realizar otros oficios del hogar (cocinar, lavar ropa, barrer, etc.)</div>
+              <div class="sc-bar-wrap"><div class="sc-bar" style="width: calc(12.0% * 1.7); transition-delay: 0.1s"></div><span class="sc-val">12,0%</span></div>
+            </div>
+            <div class="sc-item">
+              <div class="sc-label">Por cuidar niños de 5 años y más</div>
+              <div class="sc-bar-wrap"><div class="sc-bar" style="width: calc(0.9% * 1.7); transition-delay: 0.2s"></div><span class="sc-val">0,9%</span></div>
+            </div>
+            <div class="sc-item">
+              <div class="sc-label">Por cuidar de niños menores de 5 años</div>
+              <div class="sc-bar-wrap"><div class="sc-bar" style="width: calc(0.5% * 1.7); transition-delay: 0.3s"></div><span class="sc-val">0,5%</span></div>
+            </div>
+            <div class="sc-item">
+              <div class="sc-label">Por cuidar de una persona mayor</div>
+              <div class="sc-bar-wrap"><div class="sc-bar" style="width: calc(1.6% * 1.7); transition-delay: 0.4s"></div><span class="sc-val">1,6%</span></div>
+            </div>
+            <div class="sc-item">
+              <div class="sc-label">Por cuidar de una persona con discapacidad</div>
+              <div class="sc-bar-wrap"><div class="sc-bar" style="width: calc(0.9% * 1.7); transition-delay: 0.5s"></div><span class="sc-val">0,9%</span></div>
+            </div>
+          </div>
+
+          <div class="sc-group">
+            <div class="sc-group-title">Ciclo de vida</div>
+            <div class="sc-item">
+              <div class="sc-label">Porque ya se pensionó</div>
+              <div class="sc-bar-wrap"><div class="sc-bar" style="width: calc(37.0% * 1.7); transition-delay: 0.6s"></div><span class="sc-val">37,0%</span></div>
+            </div>
+            <div class="sc-item">
+              <div class="sc-label">Porque es un adulto mayor</div>
+              <div class="sc-bar-wrap"><div class="sc-bar" style="width: calc(31.7% * 1.7); transition-delay: 0.7s"></div><span class="sc-val">31,7%</span></div>
+            </div>
+          </div>
+
+          <div class="sc-group">
+            <div class="sc-group-title">Otras razones</div>
+            <div class="sc-item">
+              <div class="sc-label">No desea trabajar</div>
+              <div class="sc-bar-wrap"><div class="sc-bar" style="width: calc(7.2% * 1.7); transition-delay: 0.8s"></div><span class="sc-val">7,2%</span></div>
+            </div>
+            <div class="sc-item">
+              <div class="sc-label">Porque está estudiando</div>
+              <div class="sc-bar-wrap"><div class="sc-bar" style="width: calc(1.4% * 1.7); transition-delay: 0.9s"></div><span class="sc-val">1,4%</span></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="col" style="margin-inline:auto"><figcaption><b>Fuente:</b> Encuesta de Calidad de Vida (ECV) 2025 · Cálculos de la Fundación WWB Colombia.</figcaption></div>
+  </figure>
+</section>
+
+<!-- SECCIÓN 3 -->
+<section class="chapter">
+  <div class="col">
+    <p class="eyebrow">El hambre</p>
+    <h2 class="chapter-title">Cuando el dinero no alcanza, aparece el hambre</h2>
+    <p></p>
+    <p>Las desigualdades observadas hasta ahora no son únicamente una cuestión de ingresos. También determinan la capacidad real que tienen los hogares para garantizar condiciones mínimas de bienestar.</p>
+  </div>
+
+  <div class="food-list reveal">
+    <div class="food-item">
+      <div class="v-group">
+        <div class="v">38,8%</div>
+        <div class="line"></div>
+      </div>
+      <div class="t">reportó preocupación frecuente por escasez de alimentos</div>
+    </div>
+    <div class="food-item">
+      <div class="v-group">
+        <div class="v">21,8%</div>
+        <div class="line"></div>
+      </div>
+      <div class="t">comió menos de lo que debía por falta de recursos</div>
+    </div>
+    <div class="food-item">
+      <div class="v-group">
+        <div class="v">32,1%</div>
+        <div class="line"></div>
+      </div>
+      <div class="t">tuvo variedad limitada de alimentos</div>
+    </div>
+    <div class="food-item">
+      <div class="v-group">
+        <div class="v">9,5%</div>
+        <div class="line"></div>
+      </div>
+      <div class="t">se quedó sin alimentos en algún momento del año</div>
+    </div>
+  </div>
+
+  <div class="col">
+    <p>Los datos muestran que las mujeres llegan con mayor frecuencia a la jefatura desde posiciones económicamente más frágiles. Reciben menos ingresos, tienen una mayor presencia entre los hogares de menores recursos, reportan con más frecuencia que el dinero no alcanza para cubrir los gastos básicos y enfrentan mayores restricciones para participar en el mercado laboral debido a las responsabilidades de cuidado. Cuando estas condiciones se combinan, la vulnerabilidad deja de ser una categoría estadística y comienza a manifestarse en decisiones concretas dentro de los hogares.</p>
+    <p>Una de las primeras dimensiones donde aparecen estas restricciones es la alimentación. Porque cuando los ingresos resultan insuficientes, los hogares no dejan de comer de un día para otro. Primero se preocupan por quedarse sin alimentos, luego reducen la variedad de su dieta, sustituyen productos por opciones más económicas y, en los casos más severos, disminuyen las porciones o dejan de consumir alguna comida del día.</p>
+  </div>
+</section>
+
+<!-- SECCIÓN 4 -->
+<section class="chapter">
+  <div class="col">
+    <p class="eyebrow">La percepción</p>
+    <h2 class="chapter-title">La pobreza tiene rostro de mujer</h2>
+    <p></p>
+    <p>Las diferencias observadas en ingresos, empleo y responsabilidades de cuidado terminan reflejándose en una dimensión menos visible, pero igualmente importante, la forma en que las personas perciben su propia situación económica.</p>
+    <p>Cuando se les pregunta directamente si se consideran pobres, las mujeres responden afirmativamente con mayor frecuencia que los hombres. El 39,5% de las jefas de hogar afirma sentirse pobre, frente al 35,9% de los jefes. En términos absolutos, esto significa que cerca de 3,5 millones de mujeres que sostienen hogares consideran que viven en condiciones de pobreza.</p>
+  </div>
+
+  <div class="poverty-cards reveal col">
+    <div class="poverty-card c1">
+      <div>
+        <div class="v">39,5%</div>
+        <div class="line"></div>
+        <div class="lab">Pobreza subjetiva</div>
+      </div>
+      <p class="desc">De las jefas de hogar se considera pobre a sí misma, reflejando una profunda vulnerabilidad y una acumulación de desventajas cotidianas.</p>
+    </div>
+    <div class="poverty-card c2">
+      <div>
+        <div class="v">32,3% <em>vs 24,5% de los jefes</em></div>
+        <div class="line"></div>
+        <div class="lab">Pobreza monetaria</div>
+      </div>
+      <p class="desc">Afecta de manera desproporcionada a los hogares de jefatura femenina, ensanchando la brecha estructural de género en el país.</p>
+    </div>
+    <div class="poverty-card c3">
+      <div>
+        <div class="v">28,0%</div>
+        <div class="line"></div>
+        <div class="lab">Promedio nacional</div>
+      </div>
+      <p class="desc">Es la incidencia oficial de pobreza monetaria en todo el territorio colombiano para el año 2025, un parámetro de comparación crítico.</p>
+    </div>
+  </div>
+
+  <div class="col">
+    <p>La diferencia puede parecer pequeña, pero resulta consistente con el resto de los hallazgos de esta investigación. Las mujeres tienen menores ingresos per cápita, una mayor presencia en los deciles más bajos de la distribución, mayores dificultades para cubrir los gastos mínimos y una participación más limitada en los segmentos de mayores ingresos. La pobreza subjetiva parece reflejar esa acumulación de desventajas.</p>
+    <p>La percepción de deterioro económico también es más frecuente entre las mujeres. Mientras el 18,2% de los hombres considera que la situación económica de su hogar es peor o mucho peor que la de hace un año, entre las mujeres esta proporción asciende al 21,8%. Es decir, más de una de cada cinco jefas de hogar percibe que las condiciones económicas de su familia han empeorado en los últimos doce meses.</p>
+    <p>Las diferencias también aparecen en distintos indicadores de bienestar subjetivo. Las mujeres reportan niveles más bajos de satisfacción con su vida, con su salud, con su trabajo y con su nivel de seguridad. Al mismo tiempo, registran mayores niveles de preocupación y tristeza en comparación con los hombres.</p>
+    <p>Aunque estos indicadores pertenecen al ámbito de las percepciones, su comportamiento resulta difícil de separar de las condiciones materiales observadas a lo largo de esta nota. Los ingresos insuficientes, la mayor exposición a la vulnerabilidad económica y la concentración de responsabilidades de cuidado no solo afectan el bienestar de los hogares en términos objetivos. También influyen en la manera como las personas experimentan su vida cotidiana y evalúan sus posibilidades de futuro.</p>
+  </div>
+</section>
+
+<!-- SECCIÓN 5 -->
+<section class="chapter">
+  <div class="col">
+    <p class="eyebrow">Interseccionalidad</p>
+    <h2 class="chapter-title">Las desigualdades se acumulan</h2>
+    <p></p>
+    <p>Las brechas son aún más profundas para algunas mujeres. La desigualdad no actúa como una sola fuerza, sino como varias superpuestas. Ser mujer ya implica una desventaja estructural en el acceso a ingresos y recursos. Ser mujer indígena o afrodescendiente, en un hogar que ella sostiene sola, significa cargar con tres capas de exclusión al mismo tiempo —de género, étnica y económica— sin que ninguna política pública haya logrado todavía desmontar esa acumulación.</p>
+  </div>
+
+  <div class="inter reveal">
+    <div class="panel indigena">
+      <h3>Jefas indígenas</h3>
+      <div class="stat"><div class="v">67,6%</div><div class="d">enfrenta inseguridad alimentaria en el hogar</div></div>
+      <div class="stat"><div class="v">64,6%</div><div class="d">declara ingresos insuficientes</div></div>
+      <div class="stat"><div class="v">71,2%</div><div class="d">se considera a sí misma en situación de pobreza<em>56,1% en pobreza monetaria</em></div></div>
+    </div>
+    <div class="panel afro">
+      <h3>Jefas afrodescendientes</h3>
+      <div class="stat"><div class="v">53,7%</div><div class="d">enfrenta inseguridad alimentaria en el hogar</div></div>
+      <div class="stat"><div class="v">51,7%</div><div class="d">declara ingresos insuficientes</div></div>
+      <div class="stat"><div class="v">58,5%</div><div class="d">se considera a sí misma en situación de pobreza<em>38,3% en pobreza monetaria</em></div></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <p class="lede-question">¿Los avances están ocurriendo lo suficientemente rápido para compensar las desigualdades que siguen enfrentando?</p>
+  </div>
+</section>
+
+<!-- SECCIÓN 6 -->
+<section class="chapter">
+  <div class="col">
+    <p class="eyebrow">Señales de cambio</p>
+    <h2 class="chapter-title">Señales de cambio en medio de las desigualdades</h2>
+    <p></p>
+    <p>Las brechas descritas a lo largo de esta nota siguen siendo profundas. Sin embargo, los resultados también muestran algunas señales de cambio que ayudan a matizar el panorama.</p>
+    <p>La primera señal proviene de la propia transformación de los hogares colombianos. Las mujeres ya encabezan el 46,4% de los hogares del país y sostienen económicamente a cerca de 24,6 millones de personas. Hace apenas una década, la distancia frente a los hombres era considerablemente mayor. Hoy la brecha se ha reducido a siete puntos porcentuales y en varios departamentos las mujeres ya son mayoría entre quienes lideran los hogares. Mientras algunos departamentos registran cambios modestos, otros experimentan un crecimiento acelerado de la jefatura femenina. El comportamiento del país con respecto a cómo están siendo liderados los hogares en Colombia ha tenido un cambio significativo en los últimos años. Si se realiza la comparación con el año 2019 justo antes de la pandemia, la jefatura femenina a nivel nacional era de 38,4%, por lo que comparado con el dato de 2025 representa un incremento de 8 p. p. que se distribuye de manera heterogénea a nivel departamental. Los mayores incrementos se concentran en el Pacífico y la Amazonía: en Chocó la jefatura femenina aumentó 7,72 p. p., en Putumayo 6,08 p. p., en Guaviare 3,79 p. p. y en el Valle del Cauca 3,55 p. p., seguidos de cerca por Cauca (3,51 p. p.) y La Guajira (3,32 p. p.). El patrón resulta particularmente llamativo porque varios de estos departamentos se encuentran entre aquellos con mayores niveles de pobreza multidimensional y necesidades básicas insatisfechas del país.</p>
+    <p>En el otro extremo, varios departamentos del centro y el Caribe retrocedieron frente a 2019: Magdalena cayó 5,90 p. p., Cundinamarca 4,79 p. p., Casanare 4,50 p. p. y Caquetá 3,72 p. p.</p>
+  </div>
+
+  <figure class="fig reveal">
+    <div class="fig-head col" style="margin-inline:auto">
+      <h3 class="fig-title">El avance de la jefatura femenina es heterogéneo: crece con fuerza en el Pacífico y la Amazonía, pero retrocede en el centro y el Caribe</h3>
+      <p class="fig-sub">Variación de la jefatura femenina por departamento frente a 2019 · puntos porcentuales</p>
+    </div>
+    <img src="assets/graficos/c4_departamentos.png" alt="Mapa de coropletas de Colombia con la variación de la jefatura femenina por departamento entre 2019 y 2025. Los mayores aumentos están en Chocó (+7,72 p.p.), Putumayo (+6,08 p.p.), Guaviare (+3,79 p.p.) y Valle del Cauca (+3,55 p.p.). Los mayores retrocesos están en Magdalena (-5,90 p.p.), Cundinamarca (-4,79 p.p.), Casanare (-4,50 p.p.) y Caquetá (-3,72 p.p.).">
+    <div class="col" style="margin-inline:auto"><figcaption><b>Fuente:</b> Encuesta de Calidad de Vida (ECV) 2025 · Cálculos de la Fundación WWB Colombia. Variación 2019–2025 en puntos porcentuales.</figcaption></div>
+  </figure>
+
+  <div class="col">
+    <p>Después vienen los ingresos. Aunque las mujeres continúan sosteniendo hogares con menos recursos que los hombres, la distancia comenzó a reducirse. En 2024, el ingreso per cápita de los hogares encabezados por mujeres era 18,9% inferior al de los hogares con jefatura masculina. En 2025 la brecha se redujo al 15,6%. La diferencia sigue siendo considerable, pero la tendencia sugiere una disminución gradual de una desigualdad que históricamente ha limitado las oportunidades económicas de las mujeres.</p>
+    <p>Una de las señales más contundentes de mejora aparece en la seguridad alimentaria. Aunque las mujeres continúan enfrentando mayores niveles de vulnerabilidad económica, los hogares encabezados por ellas registraron avances significativos en prácticamente todos los indicadores de acceso a alimentos durante el último año.</p>
+    <p>La proporción de jefas de hogar que manifestó preocupación por no tener suficientes alimentos para comer se redujo de manera importante, pasando a 38,8%, lo que representa una disminución de 5,4 puntos porcentuales frente a 2024. También cayó la proporción de quienes no pudieron consumir alimentos saludables y nutritivos (29,6%, una reducción de 6,1 puntos), así como la de aquellas que reportaron haber consumido una dieta poco variada (32,1%, 5,9 puntos menos).</p>
+    <p>Las mejoras también alcanzaron las formas más severas de inseguridad alimentaria. El porcentaje de jefas de hogar que tuvo que saltar alguna comida disminuyó 4 puntos porcentuales hasta ubicarse en 17%; la proporción que comió menos de lo que consideraba necesario cayó 6 puntos, hasta 21,8%; y quienes se quedaron sin alimentos se redujeron en 3,4 puntos porcentuales, llegando al 9,5%.</p>
+    <p>Particularmente alentador resulta el comportamiento de los indicadores asociados al hambre. La proporción de mujeres que reportó haber sentido hambre sin poder comer debido a la falta de dinero u otros recursos cayó a 11,9%, 2,7 puntos porcentuales menos que el año anterior. Asimismo, el porcentaje de quienes pasaron un día entero sin comer se redujo hasta 4,4%, también 2,7 puntos menos que en 2024.</p>
+  </div>
+</section>
+
+<!-- SECCIÓN 7 · CONCLUSIÓN -->
+<section class="chapter">
+  <div class="col">
+    <p class="eyebrow">El desafío</p>
+    <h2 class="chapter-title">El desafío ya no es reconocerlas. Es construir un país que las sostenga.</h2>
+    <p></p>
+    <p>Durante décadas, buena parte de las políticas sociales colombianas fueron diseñadas bajo la idea de que detrás de cada hogar existía un proveedor principal y una red familiar capaz de absorber las responsabilidades de cuidado. Los datos muestran que esa realidad cambió.</p>
+    <p>Hoy cerca de la mitad de la población colombiana vive en hogares encabezados por mujeres. Millones de ellas sostienen económicamente a sus familias, toman las decisiones fundamentales del hogar, administran recursos escasos y responden por el bienestar cotidiano de niños, niñas, adolescentes, personas mayores y otros familiares dependientes. En muchos casos, además, lo hacen sin una pareja con quien compartir estas responsabilidades.</p>
+    <p>La transformación es profunda. Pero los resultados de esta investigación muestran que las condiciones bajo las cuales las mujeres ejercen ese liderazgo continúan siendo distintas a las de los hombres.</p>
+  </div>
+
+  <ul class="summary col reveal">
+    <li><b>43,2%</b> de las jefas encabeza hogares monoparentales, frente al 5,3% de los jefes.</li>
+    <li><b>65,3%</b> son solteras, más del doble de la proporción observada entre los hombres (30,1%).</li>
+    <li><b>86,8%</b> son madres.</li>
+    <li><b>52,2%</b> convive con niños menores de cinco años o personas mayores de 60 años que requieren mayores niveles de cuidado.</li>
+    <li>Reciben un ingreso per cápita <b>15,6% menor</b> que el de los hogares encabezados por hombres.</li>
+    <li>Representan el <b>54%</b> de los hogares del decil más pobre, pero apenas el 41,3% de los hogares del decil más rico.</li>
+    <li><b>34,6%</b> afirma que los ingresos de su hogar no alcanzan para cubrir los gastos mínimos, frente al 28,4% de los hombres.</li>
+    <li><b>39,5%</b> se considera en situación de pobreza, frente al 35,9% de los jefes de hogar.</li>
+    <li>La incidencia de pobreza monetaria alcanza el <b>36,1%</b> entre las jefas, frente al 28,4% entre los jefes.</li>
+    <li><b>38,8%</b> manifestó preocupación por no tener suficientes alimentos para comer y 21,8% reportó haber comido menos de lo que consideraba necesario por falta de recursos.</li>
+  </ul>
+
+  <div class="col">
+    <p>La desigualdad ya no se expresa únicamente en quién participa en el mercado laboral o quién aporta ingresos al hogar. También se expresa en quién asume los riesgos asociados al bienestar de millones de personas.</p>
+    <p>Sin embargo, los datos también muestran señales alentadoras. La brecha de ingresos comenzó a reducirse. La inseguridad alimentaria disminuyó de manera importante en prácticamente todos sus indicadores. Cada vez más mujeres participan como líderes económicas de sus hogares y la jefatura femenina continúa expandiéndose incluso en territorios históricamente rezagados. Colombia avanza, pero lo hace desde una contradicción persistente: las responsabilidades que asumen las mujeres crecen más rápido que los apoyos que reciben para ejercerlas.</p>
+    <p>Esta constatación plantea un desafío que trasciende las políticas para las mujeres. Lo que está en juego no es únicamente el bienestar de las jefas de hogar. Es también el bienestar de los 24,6 millones de personas que dependen de ellas.</p>
+    <p>Desde la política pública, esto implica reconocer que las estrategias de reducción de pobreza, empleo, protección social y cuidado no pueden seguir diseñándose como si la estructura familiar predominante fuera la misma de hace treinta años. Desde el sector privado, supone entender que la productividad y la autonomía económica de millones de mujeres están condicionadas por responsabilidades de cuidado que continúan siendo asumidas de manera desigual. Y desde la sociedad en su conjunto, obliga a preguntarse quién está absorbiendo los costos invisibles de sostener la vida cotidiana.</p>
+    <p>La historia que cuentan estos datos no es únicamente una historia sobre mujeres. Es una historia sobre cómo se organiza el bienestar en Colombia. Y la evidencia es clara: una parte creciente de ese bienestar descansa sobre los hombros de mujeres que siguen enfrentando más obstáculos y menos recursos que los hombres para sostenerlo.</p>
+    <p>El desafío para los próximos años no consiste en que haya más mujeres al frente de los hogares. Ese cambio ya ocurrió. El verdadero desafío consiste en garantizar que las oportunidades, los ingresos, los sistemas de cuidado y los mecanismos de protección social evolucionen al mismo ritmo que la realidad de las familias colombianas.</p>
+    <p class="closing">Porque cuando casi la mitad del país depende de mujeres que sostienen hogares, fortalecer sus capacidades ya no es una agenda sectorial. Es una condición para el desarrollo del país.</p>
+  </div>
+</section>
+</article>
+
+<!-- PIE -->
+<footer>
+  <div class="wrap">
+    <img src="assets/logos/WWB_Logotipo_DuotonoNegativo.png" alt="Fundación WWB Colombia">
+    <div class="src">
+      <b>Fuente de los datos:</b> Encuesta de Calidad de Vida (ECV) 2025. Cálculos y análisis de la Fundación WWB Colombia.<br>
+      Las gráficas fueron elaboradas por la Fundación con base en los indicadores citados en el texto.<br>
+      <a href="https://www.fundacionwwbcolombia.org">www.fundacionwwbcolombia.org</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Barra de progreso de lectura
+  var bar = document.getElementById('progress');
+  function onScroll(){
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    var p = max > 0 ? (h.scrollTop || document.body.scrollTop) / max : 0;
+    bar.style.width = (p*100) + '%';
+  }
+  document.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  // Animación de contadores numéricos (panel hero)
+  function animateValue(obj, start, end, duration) {
+    let startTimestamp = null;
+    const step = (timestamp) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+
+      // Curva de desaceleración suave
+      const easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+      const current = start + easeProgress * (end - start);
+
+      // Escribe el número cambiando el punto por la coma decimal
+      obj.innerHTML = current.toFixed(1).replace('.', ',');
+
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      } else {
+        obj.innerHTML = end.toFixed(1).replace('.', ',');
+      }
+    };
+    window.requestAnimationFrame(step);
+  }
+
+  // Segmented control del split-chart (mercado laboral) en móvil
+  function switchScTab(which){
+    document.querySelectorAll('.sc-tab-btn').forEach(function(btn){
+      btn.classList.toggle('active', btn.getAttribute('data-tab') === which);
+    });
+    document.querySelectorAll('.sc-col').forEach(function(col){
+      col.classList.toggle('active', col.classList.contains(which));
+    });
+  }
+
+  // Reveal al hacer scroll
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var items = document.querySelectorAll('.reveal');
+  if (reduce || !('IntersectionObserver' in window)) {
+    items.forEach(function(el){
+      el.classList.add('in');
+      if (el.classList.contains('hero')) {
+        el.querySelectorAll('.counter').forEach(function(c){
+          c.innerHTML = parseFloat(c.getAttribute('data-target')).toFixed(1).replace('.', ',');
+        });
+      }
+    });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){
+          e.target.classList.add('in');
+          if (e.target.classList.contains('hero')) {
+            var counters = e.target.querySelectorAll('.counter');
+            counters.forEach(function(c) {
+              const target = parseFloat(c.getAttribute('data-target'));
+              animateValue(c, 0, target, 2500); // 2500 milisegundos
+            });
+          }
+          io.unobserve(e.target);
+        }
+      });
+    }, {rootMargin:'0px 0px -12% 0px', threshold:0.08});
+    items.forEach(function(el){ io.observe(el); });
+  }
+</script>
+</body>
+</html>
