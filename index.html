@@ -8,6 +8,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,400..800&family=Libre+Franklin:ital,wght@0,300..800;1,400..600&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&display=swap" rel="stylesheet">
 <style>
+  /* Aquí centralizo la paleta de marca, las tipografías y los dos anchos de columna
+     que reutilizo en todo el documento, para no repetir valores sueltos por el CSS */
   :root{
     --azul:#223581; --azul-2:#192962; --lavanda:#869EE5;
     --amarillo:#FFB700; --beige:#E8DED6; --hueso:#FAFAFA;
@@ -22,6 +24,7 @@
   }
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%}
+  /* Defino la tipografía y el color base del cuerpo del texto; todo lo demás hereda de aquí */
   body{
     margin:0; background:var(--hueso); color:var(--tinta);
     font-family:var(--serif);
@@ -31,14 +34,19 @@
   ::selection{background:var(--amarillo);color:var(--azul-2)}
 
   /* ---------- barra de lectura ---------- */
+  /* Pinto la barra amarilla fija arriba de la pantalla; su ancho lo actualizo por scroll en el script */
   .progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--amarillo);z-index:60;transition:width .08s linear}
 
   /* ---------- contenedores ---------- */
+  /* Uso estas tres clases como plantillas de ancho para no repetir max-width en cada componente:
+     .wrap para bloques a todo lo ancho con relleno lateral, .col para la columna angosta de lectura,
+     .wide para elementos anchos (gráficos, tarjetas) sin relleno propio */
   .wrap{max-width:var(--wide);margin:0 auto;padding:0 28px}
   .col{max-width:var(--col);margin-inline:auto}
   .wide{max-width:var(--wide);margin-inline:auto}
 
   /* ---------- cabecera del artículo ---------- */
+  /* Estilo el kicker, el título y el subtítulo que suelo usar en cabeceras centradas */
   .art-head{text-align:center;padding:64px 0 30px}
   .kicker{font-family:var(--sans);font-weight:800;letter-spacing:.22em;font-size:14px;color:var(--azul);text-transform:uppercase;margin:0}
   .kicker-sub{font-family:var(--sans);font-weight:700;letter-spacing:.28em;font-size:12px;color:var(--tinta);text-transform:uppercase;margin:9px 0 0}
@@ -52,11 +60,14 @@
   .dek{font-family:var(--display);font-weight:400;font-style:italic;
     font-size:clamp(1.15rem,2.4vw,1.55rem);line-height:1.4;color:var(--gris);
     max-width:34ch;margin:26px auto 0}
-  .meta{font-family:var(--sans);font-size:13px;letter-spacing:.04em;color:var(--gris);margin-top:30px;display:flex;align-items:center;gap:10px}
+  .meta{font-family:var(--sans);font-size:13px;letter-spacing:.04em;color:var(--gris);margin-top:30px;display:flex;flex-wrap:wrap;row-gap:8px;align-items:center;gap:10px}
+  .meta span:not(.dot){white-space:nowrap}
   .meta-logo{height:38px;width:auto;display:block}
   .meta .dot{color:var(--linea-fuerte)}
 
   /* ---------- cabecera partida a todo el ancho: texto + imagen integrada en degradado ---------- */
+  /* Divido la cabecera en dos columnas (texto e ilustración) y uso un degradado para que la imagen
+     se funda con el fondo en vez de cortarse con un borde duro */
   .hero-split{
     display:grid;grid-template-columns:1.2fr 1fr;align-items:start;
     gap:0;width:100%;padding:44px 0 20px;
@@ -75,6 +86,8 @@
   }
 
   /* ---------- panel-hero de cifras ---------- */
+  /* Construyo la franja de tres cifras destacadas justo debajo de la cabecera; los números
+     arrancan en 0,0 y los animo con JS (animateValue) cuando el panel entra en pantalla */
   .hero{background:var(--beige);margin-top:14px;border-top:1px solid rgba(34,53,129,.14);border-bottom:1px solid rgba(34,53,129,.14)}
   .hero .grid{display:grid;grid-template-columns:repeat(3,1fr);max-width:var(--wide);margin:0 auto}
   .hero .cell{padding:46px 30px;position:relative}
@@ -85,12 +98,16 @@
   .hero .tick{width:30px;height:4px;background:var(--amarillo);margin-bottom:20px}
 
   /* ---------- cuerpo ---------- */
+  /* Doy estilo al bloque de texto que abre el artículo: espaciado entre párrafos y la
+     letra capital (drop cap) del primer párrafo */
   .body{padding:62px 0 20px}
   .body p{margin:0 0 1.35em}
   .lede-first::first-letter{
     font-family:var(--display);font-weight:600;color:var(--azul);
     float:left;font-size:5.0rem;line-height:.74;padding:8px 12px 0 0;
   }
+  /* Reutilizo esta clase para las preguntas retóricas que cierran cada bloque narrativo,
+     destacadas con una línea vertical amarilla a la izquierda */
   .lede-question{
     font-family:var(--display);font-weight:500;font-size:clamp(1.5rem,3.2vw,2rem);
     line-height:1.28;color:var(--azul);letter-spacing:-.01em;
@@ -99,6 +116,8 @@
   }
 
   /* ---------- capítulos ---------- */
+  /* Cada sección temática del artículo ("El retrato", "Interseccionalidad", etc.) es un .chapter;
+     aquí defino el espaciado entre capítulos y el estilo del eyebrow + título que los encabeza */
   .chapter{padding-top:26px;margin-top:44px}
   .chapter .col{border-top:1px solid var(--linea);padding-top:40px}
   .eyebrow{font-family:var(--sans);font-weight:700;letter-spacing:.2em;text-transform:uppercase;font-size:12px;color:var(--azul);display:flex;align-items:center;gap:11px;margin:0 0 20px}
@@ -109,6 +128,8 @@
   .chapter > .col > .chapter-title + p{margin-top:0}
 
   /* ---------- figuras / gráficas ---------- */
+  /* Estandarizo aquí el envoltorio <figure> que uso para todos los gráficos del artículo
+     (mapa, título/subtítulo y pie de fuente), sean imagen estática o gráfico interactivo */
   figure.fig{margin:48px auto;max-width:var(--wide)}
   figure.fig .fig-head{max-width:52rem}
   .fig-title{font-family:var(--display);font-weight:600;font-size:clamp(1.25rem,2.6vw,1.7rem);line-height:1.18;letter-spacing:-.01em;color:var(--tinta);margin:0}
@@ -118,6 +139,9 @@
   figcaption b{color:var(--tinta);font-weight:600}
 
   /* ---------- gráfica de líneas interactiva (jefatura por sexo) ---------- */
+  /* Construí este gráfico como un SVG a mano (no una imagen) para poder animarlo con scroll.
+     La lógica de scrollytelling vive en el <script> del final del documento: ahí calculo el
+     progreso del scroll y lo uso para dibujar las líneas y hacer aparecer los puntos. */
   /* scrollytelling: la gráfica queda fija mientras se recorre el alto del wrapper */
   .scrolly-wrapper{position:relative;height:350vh}
   .sticky-chart{position:sticky;top:15vh}
@@ -172,6 +196,9 @@
   }
 
   /* ---------- gráfica de barras 100% apiladas (deciles de ingreso) ---------- */
+  /* Armé este gráfico como 10 filas HTML en vez de una imagen, para poder animarlas por CSS.
+     La variable --bars-offset guarda cuánto espacio ocupan la etiqueta y el gap a la izquierda
+     de cada barra, y la reutilizo para calcular dónde cae exactamente el 50% (línea de paridad) */
   .stc-chart{max-width:var(--wide);margin:0 auto;--bars-offset:107px} /* ancho de la etiqueta (92px) + gap (15px) */
   .stc-legend{display:flex;gap:26px;justify-content:center;margin-bottom:28px;font-family:var(--sans);font-weight:600;font-size:13px;color:var(--tinta)}
   .stc-legend-item{display:flex;align-items:center;gap:8px}
@@ -235,6 +262,8 @@
   }
 
   /* ---------- pull-stat (cuadrado de exaltación rediseñado) ---------- */
+  /* Diseñé este bloque azul de cita+cifras para resaltar el dato más impactante de una sección,
+     separándolo visualmente del resto del texto con un fondo de gradiente y sombra propia */
   .pullstat{
     max-width:var(--wide);
     margin:60px auto;
@@ -268,6 +297,8 @@
   .pullstat .label{font-family:var(--sans);font-weight:600;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:rgba(250,250,250,.8);line-height:1.4}
 
   /* ---------- retrato / profile strip ---------- */
+  /* Uso esta franja de 4 celdas para el "retrato estadístico" de la jefa de hogar: cada celda
+     tiene un número grande, una píldora de comparación (.vs) contra los hombres, y una descripción */
   .profile{max-width:var(--wide);margin:46px auto;border:1px solid var(--linea-fuerte)}
   .profile .ph{font-family:var(--sans);font-weight:700;letter-spacing:.16em;text-transform:uppercase;font-size:12px;color:var(--azul);padding:16px 24px;border-bottom:1px solid var(--linea);background:rgba(232,222,214,.4)}
   .profile .row{display:grid;grid-template-columns:repeat(4,1fr)}
@@ -294,6 +325,8 @@
   .profile.in .it:nth-child(4){transition-delay:.7s}
 
   /* ---------- panel de ingresos ---------- */
+  /* Comparo el ingreso per cápita de jefas vs. jefes con dos paneles de color y un bloque
+     central con la razón entre ambos; los tres entran en cascada (jefa, luego jefe, luego el centro) */
   .income{max-width:var(--wide);margin:48px auto;display:grid;grid-template-columns:1fr auto 1fr;align-items:stretch;border:1px solid var(--linea-fuerte)}
   .income.reveal{opacity:1;transform:none;transition:none}
   .income .side{
@@ -327,6 +360,8 @@
   .income .mid .rl{font-family:var(--sans);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--gris);margin-top:12px;line-height:1.5;max-width:16ch}
 
   /* ---------- tarjetas de pobreza ---------- */
+  /* Presento los tres indicadores de pobreza (subjetiva, monetaria, promedio nacional) como
+     tarjetas independientes, cada una con su propio color de acento y retraso de entrada */
   .poverty-cards{
     display:grid;grid-template-columns:repeat(3,1fr);gap:26px;
     margin:44px auto;max-width:var(--wide);
@@ -360,6 +395,8 @@
   .poverty-card .desc{font-family:var(--sans);font-size:13.5px;line-height:1.5;color:var(--tinta);margin:20px 0 0}
 
   /* ---------- tarjetas comparativas (diseño de impacto con brecha) ---------- */
+  /* Diseñé esta tarjeta para mostrar dos cifras enfrentadas (jefas vs. jefes) con una píldora
+     amarilla en el centro que resalta la brecha entre ambas */
   .compare{max-width:var(--wide);margin:50px auto;display:grid;grid-template-columns:1fr 1fr;gap:30px}
 
   .compare .c{background:var(--hueso);border:1px solid var(--linea-fuerte);border-radius:12px;padding:36px 30px;box-shadow:0 12px 24px rgba(34,53,129,.04);position:relative;overflow:hidden}
@@ -393,6 +430,8 @@
   .compare.in .c-gap .badge{transition-delay:.6s}
 
   /* ---------- número con transición de aparición (usado en pull-stat) ---------- */
+  /* Esta clase la aplico solo al número dentro del pull-stat para que "salte" hacia su
+     posición final en vez de aparecer junto con el resto del bloque */
   .number-reveal{
     display:inline-block;
     opacity:0;
@@ -402,6 +441,8 @@
   .pullstat.in .number-reveal{opacity:1;transform:translateY(0) scale(1)}
 
   /* ---------- split-chart: razones para estar fuera del mercado laboral ---------- */
+  /* Este gráfico compara dos listas de barras (mujeres/hombres) lado a lado en desktop;
+     en móvil las escondo detrás de un selector de pestañas para que no compitan por el ancho */
   .split-chart{max-width:var(--wide);margin:44px auto}
   .sc-tabs{display:none;gap:10px;margin-bottom:28px}
   .sc-tab-btn{
@@ -452,6 +493,8 @@
   }
 
   /* ---------- lista de datos (alimentos) ---------- */
+  /* Uso esta lista de tarjetas simples para los cuatro indicadores de inseguridad alimentaria;
+     cada tarjeta entra con un pequeño retraso escalonado para dar sensación de conteo */
   .food-list{
     margin:35px auto 40px;
     display:flex;flex-direction:column;gap:18px;
@@ -478,6 +521,8 @@
   .food-list.in .food-item:nth-child(4){transition-delay:.85s}
 
   /* ---------- interseccionalidad (tabla comparativa) ---------- */
+  /* Armé esta tabla para comparar jefas indígenas vs. afrodescendientes en tres indicadores;
+     la construí con CSS grid en vez de <table> para poder animar cada fila por separado */
   .inter-table{max-width:var(--wide);margin:44px auto;border:1px solid var(--linea-fuerte);border-radius:10px;overflow:hidden;background:var(--hueso)}
   .inter-table.reveal{opacity:1;transform:none;transition:none}
 
@@ -514,6 +559,8 @@
   .it-sub-val{display:block;font-family:var(--sans);font-weight:500;font-size:13px;color:var(--gris);margin-top:6px}
 
   /* ---------- lista resumen final ---------- */
+  /* Le quito la viñeta por defecto a esta lista y la reemplazo con un cuadradito amarillo,
+     para que el resumen de cierre se sienta parte del mismo lenguaje visual del resto de la nota */
   .summary{max-width:var(--col);margin:40px auto}
   .summary li{list-style:none;position:relative;padding-left:30px;margin:0 0 16px;font-family:var(--serif);font-size:18px;line-height:1.5}
   .summary{padding:0}
@@ -521,24 +568,34 @@
   .summary li b{color:var(--azul);font-weight:700}
 
   /* ---------- cierre ---------- */
+  /* Le doy a la frase final su propio tamaño y color en cursiva, para que cierre el artículo
+     con más peso visual que un párrafo normal */
   .closing{max-width:var(--col);margin:6px auto 0;font-family:var(--display);font-weight:500;font-style:italic;font-size:clamp(1.4rem,3vw,1.85rem);line-height:1.36;color:var(--azul);letter-spacing:-.01em}
 
   /* ---------- pie ---------- */
+  /* Cierro la página con una franja azul sólida: logo de la Fundación a la izquierda y
+     créditos de la fuente de datos a la derecha */
   footer{background:var(--azul);color:rgba(250,250,250,.86);margin-top:80px;padding:52px 0 46px}
   footer .wrap{display:flex;flex-wrap:wrap;gap:40px;justify-content:space-between;align-items:flex-start}
-  footer img{height:44px;width:auto}
+  footer img{height:72px;width:auto}
   footer .src{font-family:var(--sans);font-size:13px;line-height:1.7;max-width:52ch}
   footer .src b{color:var(--hueso);font-weight:600}
   footer a{color:var(--amarillo);text-decoration:none}
   footer a:hover{text-decoration:underline}
 
   /* ---------- reveal ---------- */
+  /* Esta es la animación de aparición genérica que reutilizo en casi todos los componentes:
+     empiezan invisibles y desplazados hacia abajo, y el observer del script agrega ".in"
+     cuando el elemento entra en pantalla. Varios componentes (profile, income, etc.) la anulan
+     a propósito para reemplazarla por su propia coreografía interna, hijo por hijo. */
   .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
   .reveal.in{opacity:1;transform:none}
 
   a:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--amarillo);outline-offset:3px}
 
   /* ---------- responsive ---------- */
+  /* Ajusto el diseño en tres cortes de ancho (820px, 600px y 480px): apilo columnas,
+     reduzco tipografías y agrego relleno lateral para que el texto no quede pegado al borde */
   @media (max-width:820px){
     body{font-size:18px}
     .col,.split-chart,.food-list,.stc-chart{padding-left:22px;padding-right:22px}
@@ -601,6 +658,8 @@
     .it-val{font-size:1.25rem;padding:14px 6px}
     .it-sub-val{font-size:11px}
   }
+  /* Respeto la preferencia de movimiento reducido del sistema operativo: en vez de desactivar
+     las animaciones una por una, fuerzo el estado final de cada componente y quito las transiciones */
   @media (prefers-reduced-motion:reduce){
     .reveal{opacity:1;transform:none;transition:none}
     .progress{transition:none}
@@ -616,9 +675,10 @@
 </style>
 </head>
 <body>
+<!-- Esta barra vacía la voy llenando por JS a medida que el lector avanza en el artículo -->
 <div class="progress" id="progress"></div>
 
-<!-- CABECERA -->
+<!-- CABECERA: aquí presento el titular, el dek y la ilustración de apertura a dos columnas -->
 <div class="hero-split">
   <div class="hero-split-text">
     <p class="kicker">Versión 3</p>
@@ -626,14 +686,15 @@
     <hr class="kicker-rule">
     <h1 class="headline">Las mujeres al frente de los hogares colombianos: El peso de sostener una familia sin un sistema que las sostenga a ellas</h1>
     <p class="dek">Casi la mitad de Colombia vive en hogares liderados por mujeres</p>
-    <p class="meta"><img class="meta-logo" src="assets/logos/WWB_Logotipo_Duotono.png" alt="Fundación WWB Colombia"><span class="dot">•</span>Junio de 2026</p>
+    <p class="meta"><img class="meta-logo" src="assets/logos/WWB_Logotipo_Duotono.png" alt="Fundación WWB Colombia"><span class="dot">•</span><span>Junio de 2026</span><span class="dot">•</span><span id="reading-time"></span></p>
   </div>
   <div class="hero-split-img">
     <img src="assets/imagenes/imagen-2.png" alt="Ilustración en tinta de una mujer sonriendo mientras abraza y besa la frente de un niño.">
   </div>
 </div>
 
-<!-- PANEL HERO DE CIFRAS -->
+<!-- PANEL HERO DE CIFRAS: destaco las tres cifras más importantes de la nota; los .counter
+     arrancan en 0,0 y los animo hasta su data-target cuando el panel entra en pantalla -->
 <section class="hero reveal">
   <div class="grid">
     <div class="cell">
@@ -654,7 +715,7 @@
   </div>
 </section>
 
-<!-- CUERPO -->
+<!-- CUERPO: a partir de aquí arranca el <article> que uso para calcular el tiempo de lectura -->
 <article>
 <div class="body">
   <div class="col">
@@ -664,6 +725,10 @@
     <p>El cambio ha sido acelerado. Hace poco más de una década, en el 2016, la brecha en la proporción entre hombres y mujeres al frente de los hogares era de alrededor 30,4 p.p., hoy la diferencia es de apenas siete puntos porcentuales y en varios departamentos las mujeres ya son mayoría entre quienes sostienen económica y organizativamente a sus familias.</p>
   </div>
 
+  <!-- Primer gráfico: la evolución de la jefatura femenina vs. masculina, 2010-2025.
+       Lo construí en SVG (no como imagen) para poder animarlo por scroll; los datos vienen
+       de generate_charts.py. Metí el título dentro de .sticky-chart para que no se pierda
+       de vista mientras el lector recorre el scroll de la animación. -->
   <figure class="fig reveal">
     <div class="scrolly-wrapper">
       <div class="sticky-chart">
@@ -793,7 +858,9 @@
   </div>
 </div>
 
-<!-- SECCIÓN 1 -->
+<!-- SECCIÓN 1: dibujo el perfil sociodemográfico de la jefa de hogar (soltería, maternidad,
+     monoparentalidad) combinando el pull-stat de la brecha en hogares monoparentales con la
+     franja .profile de cuatro cifras -->
 <section class="chapter">
   <div class="col">
     <p class="eyebrow">Quiénes son las mujeres que sostienen la mitad de los hogares colombianos</p>
@@ -862,7 +929,9 @@
   </div>
 </section>
 
-<!-- SECCIÓN 2 -->
+<!-- SECCIÓN 2: paso del tiempo de cuidado a los ingresos. Uso el panel .income para comparar
+     el ingreso per cápita de jefas vs. jefes, y más abajo el gráfico de barras de deciles
+     (.stc-chart) para mostrar cómo esa brecha se distribuye a lo largo de la escala de ingresos -->
 <section class="chapter">
   <div class="col">
     <p class="eyebrow">Trabajo de cuidado no remunerado</p>
@@ -900,6 +969,9 @@
     <p>Las mujeres son mayoría entre los hogares más pobres, pero minoría entre los más ricos. La jefatura femenina no se distribuye de forma homogénea en la escala social; se concentra, especialmente, en los eslabones más frágiles.</p>
   </div>
 
+  <!-- Segundo gráfico: barras 100% apiladas por decil de ingreso, con los 10 deciles reales
+       de la ECV (no solo los extremos). Agregué la línea de paridad (50%) para que se note
+       a simple vista en qué punto de la escala de ingresos las mujeres dejan de ser mayoría -->
   <figure class="fig reveal">
     <div class="fig-head col" style="margin-inline:auto">
       <h3 class="fig-title">Las mujeres son mayoría entre los hogares más pobres y minoría entre los más ricos</h3>
@@ -995,6 +1067,8 @@
     <p>En la escala más alta de satisfacción —entre 9 y 10 puntos sobre 10— se ubica el 23,4% de los jefes de hogar, frente al 19,4% de las jefas. Por el contrario, las valoraciones más bajas son más frecuentes entre las mujeres, una señal de que las dificultades económicas no solo se expresan en los ingresos disponibles, sino también en la percepción de qué tan suficientes resultan para sostener el hogar.</p>
   </div>
 
+  <!-- Enfrento aquí dos pares de cifras (ingresos insuficientes / satisfacción con la vida)
+       usando la tarjeta .compare, con la brecha resaltada en la píldora amarilla del centro -->
   <div class="compare reveal">
     <div class="c">
       <p class="lab">Afirma que los ingresos del hogar no alcanzan para cubrir los gastos mínimos</p>
@@ -1037,6 +1111,9 @@
     <p>Entre los hombres, en contraste, estas razones son marginales: apenas el 12% menciona los oficios domésticos y menos del 2% reporta responsabilidades de cuidado infantil o de personas dependientes.</p>
   </div>
 
+  <!-- Tercer gráfico: comparo las razones para estar fuera del mercado laboral con dos columnas
+       de barras. En móvil las columnas no caben lado a lado, así que las escondo detrás de un
+       selector de pestañas (switchScTab) que controlo con JS -->
   <figure class="fig reveal">
     <div class="fig-head col" style="margin-inline:auto">
       <h3 class="fig-title">Los hombres salen del mercado laboral por el ciclo de vida; las mujeres, por el cuidado</h3>
@@ -1168,7 +1245,8 @@
   </figure>
 </section>
 
-<!-- SECCIÓN 3 -->
+<!-- SECCIÓN 3: aterrizo la desigualdad económica en algo muy concreto, la comida. Uso la
+     .food-list para los cuatro indicadores de inseguridad alimentaria -->
 <section class="chapter">
   <div class="col">
     <p class="eyebrow">Aparece el hambre</p>
@@ -1214,7 +1292,8 @@
   </div>
 </section>
 
-<!-- SECCIÓN 4 -->
+<!-- SECCIÓN 4: paso de las cifras objetivas a cómo se perciben las jefas a sí mismas.
+     Uso las .poverty-card para las tres mediciones de pobreza (subjetiva, monetaria, nacional) -->
 <section class="chapter">
   <div class="col">
     <p class="eyebrow">La percepción</p>
@@ -1259,7 +1338,8 @@
   </div>
 </section>
 
-<!-- SECCIÓN 5 -->
+<!-- SECCIÓN 5: muestro cómo la desigualdad de género se agrava con la etnia, comparando
+     jefas indígenas y afrodescendientes en la .inter-table -->
 <section class="chapter">
   <div class="col">
     <p class="eyebrow">Interseccionalidad</p>
@@ -1302,7 +1382,9 @@
   </div>
 </section>
 
-<!-- SECCIÓN 6 -->
+<!-- SECCIÓN 6: cierro la parte de datos con las señales positivas (avance territorial,
+     reducción de la brecha de ingresos, mejora en seguridad alimentaria). El mapa de
+     departamentos sigue siendo una imagen estática (c4_departamentos.png), no un SVG animado -->
 <section class="chapter">
   <div class="col">
     <p class="eyebrow">Señales de cambio</p>
@@ -1331,7 +1413,8 @@
   </div>
 </section>
 
-<!-- SECCIÓN 7 · CONCLUSIÓN -->
+<!-- SECCIÓN 7 · CONCLUSIÓN: cierro la nota con un resumen de los hallazgos (.summary) y
+     el párrafo final (.closing) que deja la reflexión sobre política pública -->
 <section class="chapter">
   <div class="col">
     <p class="eyebrow">El desafío</p>
@@ -1367,7 +1450,7 @@
 </section>
 </article>
 
-<!-- PIE -->
+<!-- PIE: cierro la página con el logo de la Fundación y los créditos de la fuente de datos -->
 <footer>
   <div class="wrap">
     <img src="assets/logos/WWB_Logotipo_DuotonoNegativo.png" alt="Fundación WWB Colombia">
@@ -1380,7 +1463,11 @@
 </footer>
 
 <script>
-  // Barra de progreso de lectura
+  // Todo el JS de la nota vive en este único bloque, sin dependencias externas: la barra de
+  // progreso, el tiempo de lectura, los contadores animados, el selector móvil del split-chart,
+  // el scrollytelling del primer gráfico y el observer genérico que activa las animaciones .reveal
+
+  // Mido cuánto ha bajado el lector y actualizo el ancho de la barra amarilla de arriba
   var bar = document.getElementById('progress');
   function onScroll(){
     var h = document.documentElement;
@@ -1391,7 +1478,20 @@
   document.addEventListener('scroll', onScroll, {passive:true});
   onScroll();
 
-  // Animación de contadores numéricos (panel hero)
+  // Calculo el tiempo estimado de lectura contando las palabras de todo el <article> y
+  // dividiendo entre 200 palabras por minuto; lo dejo dinámico para no tener que recalcularlo
+  // a mano cada vez que edite el texto
+  (function(){
+    var articleEl = document.querySelector('article');
+    var target = document.getElementById('reading-time');
+    if (!articleEl || !target) return;
+    var words = articleEl.textContent.trim().split(/\s+/).filter(Boolean).length;
+    var minutes = Math.max(1, Math.round(words / 200));
+    target.textContent = minutes + ' min de lectura';
+  })();
+
+  // Uso esta función para que los tres números del panel hero cuenten desde 0 hasta su valor
+  // real con una desaceleración suave, en vez de aparecer de golpe
   function animateValue(obj, start, end, duration) {
     let startTimestamp = null;
     const step = (timestamp) => {
@@ -1414,7 +1514,8 @@
     window.requestAnimationFrame(step);
   }
 
-  // Segmented control del split-chart (mercado laboral) en móvil
+  // Con esta función controlo el selector de pestañas "Mujeres/Hombres" del split-chart en
+  // móvil: alterno cuál botón y cuál columna llevan la clase "active"
   function switchScTab(which){
     document.querySelectorAll('.sc-tab-btn').forEach(function(btn){
       btn.classList.toggle('active', btn.getAttribute('data-tab') === which);
@@ -1424,25 +1525,32 @@
     });
   }
 
-  // Gráfica de líneas: scrollytelling — el dibujado y los puntos quedan amarrados al scroll
+  // Acá controlo el scrollytelling del primer gráfico: mientras el lector recorre el alto del
+  // .scrolly-wrapper, voy dibujando ambas líneas, hago aparecer/desaparecer cada punto según
+  // su data-step, y en móvil desplazo el gráfico hacia la derecha al mismo ritmo
   (function(){
     var wrapper = document.querySelector('.scrolly-wrapper');
     var pathJefas = document.querySelector('.path-jefas');
     var pathJefes = document.querySelector('.path-jefes');
     if (!wrapper || !pathJefas || !pathJefes) return;
 
+    // Mido la longitud real de cada trazo con getTotalLength() en vez de usar un número fijo
+    // a ojo, para que el dibujado calce exacto sin importar cómo cambien las coordenadas del SVG
     var lenJefas = pathJefas.getTotalLength();
     var lenJefes = pathJefes.getTotalLength();
     pathJefas.style.strokeDasharray = lenJefas;
     pathJefes.style.strokeDasharray = lenJefes;
 
     var stepEls = document.querySelectorAll('.chart-dot[data-step], .chart-val-label[data-step]');
+    // Calculo el data-step más alto para poder sincronizar el paneo horizontal (ver punto 3 más abajo)
     var maxStep = Math.max.apply(null, Array.prototype.map.call(stepEls, function(el){
       return parseFloat(el.getAttribute('data-step'));
     }));
     var lineChartContainer = document.querySelector('.line-chart-container');
     var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+    // Si el usuario prefiere menos movimiento, muestro el gráfico ya completo y no engancho
+    // el scroll: ni dibujo progresivo ni scroll-jacking
     if (reduceMotion) {
       pathJefas.style.strokeDashoffset = 0;
       pathJefes.style.strokeDashoffset = 0;
@@ -1488,7 +1596,9 @@
     onScrollScrolly();
   })();
 
-  // Reveal al hacer scroll
+  // Cierro con el observer genérico: le agrego la clase "in" a todo elemento .reveal apenas
+  // entra en el viewport (una sola vez, por eso lo desobservo enseguida), y si el navegador no
+  // soporta IntersectionObserver o el usuario prefiere menos movimiento, muestro todo de una vez
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var items = document.querySelectorAll('.reveal');
   if (reduce || !('IntersectionObserver' in window)) {
