@@ -118,8 +118,11 @@
   figcaption b{color:var(--tinta);font-weight:600}
 
   /* ---------- gráfica de líneas interactiva (jefatura por sexo) ---------- */
+  /* scrollytelling: la gráfica queda fija mientras se recorre el alto del wrapper */
+  .scrolly-wrapper{position:relative;height:350vh}
+  .sticky-chart{position:sticky;top:15vh}
+
   .line-chart-container{width:100%}
-  .line-chart-container.reveal{opacity:1;transform:none;transition:none}
   .interactive-line-chart{display:block;width:100%;height:auto;font-family:var(--sans)}
 
   .chart-note{font-family:var(--sans);font-size:11.5px;fill:var(--gris)}
@@ -130,26 +133,22 @@
   .chart-series-label.jefas{fill:var(--azul)}
   .chart-series-label.jefes{fill:var(--lavanda)}
 
-  /* Estilo base de las líneas de tendencia */
+  /* Estilo base de las líneas de tendencia: el dibujado lo controla el JS ligado al scroll */
   .path-jefas,.path-jefes{
     fill:none;
     stroke-linecap:round;
     stroke-linejoin:round;
-    stroke-dasharray:var(--len,1200); /* longitud real calculada por JS; 1200 es respaldo */
-    stroke-dashoffset:var(--len,1200); /* empuja el trazo fuera de la pantalla */
-    transition:stroke-dashoffset 2.5s cubic-bezier(.2,.8,.2,1);
+    stroke-dasharray:1200; /* respaldo; el script fija la longitud real de cada trazo */
+    stroke-dashoffset:1200; /* empuja el trazo fuera de la pantalla hasta que el script actúa */
+    transition:stroke-dashoffset .08s linear; /* suaviza el scroll sin introducir retraso perceptible */
   }
   .path-jefas{stroke:var(--azul);stroke-width:4px}
-  .path-jefes{stroke:var(--lavanda);stroke-width:3px;transition-delay:.15s}
-
-  /* Cuando el scroll llega a la gráfica, la clase ".in" se activa */
-  .line-chart-container.in .path-jefas,
-  .line-chart-container.in .path-jefes{stroke-dashoffset:0}
+  .path-jefes{stroke:var(--lavanda);stroke-width:3px}
 
   .chart-dot{
     r:3.5px;fill:#fff;stroke-width:2px;
     opacity:0;transform:scale(.3);transform-origin:center;
-    transition:opacity .5s ease,transform .5s cubic-bezier(.34,1.56,.64,1);
+    transition:opacity .35s ease,transform .35s cubic-bezier(.34,1.56,.64,1);
   }
   .chart-dot.jefas{stroke:var(--azul);r:4px}
   .chart-dot.jefes{stroke:var(--lavanda)}
@@ -159,18 +158,17 @@
     font-family:var(--sans);font-weight:700;font-size:12px;text-anchor:middle;
     font-variant-numeric:tabular-nums;
     opacity:0;transform:translateY(6px);
-    transition:opacity .5s ease,transform .5s cubic-bezier(.34,1.56,.64,1);
+    transition:opacity .35s ease,transform .35s cubic-bezier(.34,1.56,.64,1);
   }
   .chart-val-label.jefas{fill:var(--azul)}
   .chart-val-label.jefes{fill:var(--lavanda);font-size:11px}
   .chart-val-label.big{font-size:15px}
   .chart-val-label.jefes.big{font-size:13px}
 
-  /* Al activarse la animación por scroll, brotan escalonadamente */
-  .line-chart-container.in .chart-dot,
-  .line-chart-container.in .chart-val-label{
+  /* El script marca cada punto como .visible según el progreso del scroll (puede alternar en ambos sentidos) */
+  .chart-dot.visible,
+  .chart-val-label.visible{
     opacity:1;transform:translateY(0) scale(1);
-    transition-delay:calc(var(--delay,0) * 1s); /* multiplica el retraso individual de cada punto */
   }
 
   /* ---------- gráfica de barras 100% apiladas (deciles de ingreso) ---------- */
@@ -608,7 +606,9 @@
     .progress{transition:none}
     .profile .ph,.profile .it{opacity:1;transform:none;transition:none}
     .income .side,.income .mid{opacity:1;transform:none;transition:none}
-    .path-jefas,.path-jefes{transition:none}
+    .scrolly-wrapper{height:auto}
+    .sticky-chart{position:static;top:auto}
+    .path-jefas,.path-jefes{stroke-dashoffset:0 !important;transition:none}
     .chart-dot,.chart-val-label{opacity:1;transform:none;transition:none}
     .stc-row,.stc-seg{transition:none}
     .it-row{transition:none}
@@ -665,117 +665,121 @@
   </div>
 
   <figure class="fig reveal">
-    <div class="fig-head col" style="margin-inline:auto">
-      <h3 class="fig-title">En menos de una década, la jefatura femenina pasó de un tercio a casi la mitad de los hogares</h3>
-      <p class="fig-sub">Hogares por sexo de la jefatura, % del total nacional · 2010–2025</p>
-    </div>
-    <div class="line-chart-container reveal">
-      <svg class="interactive-line-chart" viewBox="0 0 960 460" role="img" aria-label="Gráfica de líneas: entre 2010 y 2025 la jefatura femenina sube de 32,7% a 46,4% mientras la masculina baja de 67,3% a 53,6%, acercándose ambas a la paridad.">
-        <title>Evolución de la jefatura de hogar por sexo, 2010-2025</title>
+    <div class="scrolly-wrapper">
+      <div class="sticky-chart">
+        <div class="fig-head col" style="margin-inline:auto">
+          <h3 class="fig-title">En menos de una década, la jefatura femenina pasó de un tercio a casi la mitad de los hogares</h3>
+          <p class="fig-sub">Hogares por sexo de la jefatura, % del total nacional · 2010–2025</p>
+        </div>
+        <div class="line-chart-container">
+          <svg class="interactive-line-chart" viewBox="0 0 960 460" role="img" aria-label="Gráfica de líneas: entre 2010 y 2025 la jefatura femenina sube de 32,7% a 46,4% mientras la masculina baja de 67,3% a 53,6%, acercándose ambas a la paridad.">
+            <title>Evolución de la jefatura de hogar por sexo, 2010-2025</title>
 
-        <!-- banda pandemia -->
-        <rect x="533.05" y="60" width="53.3" height="345" fill="var(--beige)" opacity=".55"></rect>
-        <text x="559.7" y="395" class="chart-note" text-anchor="middle">Pandemia</text>
+            <!-- banda pandemia -->
+            <rect x="533.05" y="60" width="53.3" height="345" fill="var(--beige)" opacity=".55"></rect>
+            <text x="559.7" y="395" class="chart-note" text-anchor="middle">Pandemia</text>
 
-        <!-- línea de paridad -->
-        <line x1="70" y1="241.5" x2="836" y2="241.5" class="chart-paridad"></line>
-        <text x="80" y="234" class="chart-note">Paridad (50%)</text>
+            <!-- línea de paridad -->
+            <line x1="70" y1="241.5" x2="836" y2="241.5" class="chart-paridad"></line>
+            <text x="80" y="234" class="chart-note">Paridad (50%)</text>
 
-        <!-- trazos de tendencia -->
-        <path class="path-jefes" d="M80,103.1 L133.3,100.7 L186.6,116.7 L239.9,118.3 L293.2,119.1 L346.5,123.9 L399.8,119.9 L453.1,139.9 L506.4,148.7 L559.7,159.9 L613,186.3 L666.3,195.1 L719.6,204.7 L772.9,213.5 L826.2,212.7"></path>
-        <path class="path-jefas" d="M80,379.9 L133.3,382.3 L186.6,366.3 L239.9,364.7 L293.2,363.9 L346.5,359.1 L399.8,363.1 L453.1,343.1 L506.4,334.3 L559.7,323.1 L613,296.7 L666.3,287.9 L719.6,278.3 L772.9,269.5 L826.2,270.3"></path>
+            <!-- trazos de tendencia: el dibujado queda amarrado al scroll (ver script) -->
+            <path class="path-jefes" d="M80,103.1 L133.3,100.7 L186.6,116.7 L239.9,118.3 L293.2,119.1 L346.5,123.9 L399.8,119.9 L453.1,139.9 L506.4,148.7 L559.7,159.9 L613,186.3 L666.3,195.1 L719.6,204.7 L772.9,213.5 L826.2,212.7"></path>
+            <path class="path-jefas" d="M80,379.9 L133.3,382.3 L186.6,366.3 L239.9,364.7 L293.2,363.9 L346.5,359.1 L399.8,363.1 L453.1,343.1 L506.4,334.3 L559.7,323.1 L613,296.7 L666.3,287.9 L719.6,278.3 L772.9,269.5 L826.2,270.3"></path>
 
-        <!-- puntos y valores: jefes (hombres) -->
-        <g class="series jefes">
-          <circle cx="80" cy="103.1" class="chart-dot jefes" style="--delay:0"></circle>
-          <text x="80" y="93.1" class="chart-val-label jefes" style="--delay:0">67,3%</text>
-          <circle cx="133.3" cy="100.7" class="chart-dot jefes" style="--delay:.16"></circle>
-          <text x="133.3" y="115.7" class="chart-val-label jefes" style="--delay:.16">67,6%</text>
-          <circle cx="186.6" cy="116.7" class="chart-dot jefes" style="--delay:.32"></circle>
-          <text x="186.6" y="131.7" class="chart-val-label jefes" style="--delay:.32">65,6%</text>
-          <circle cx="239.9" cy="118.3" class="chart-dot jefes" style="--delay:.48"></circle>
-          <text x="239.9" y="133.3" class="chart-val-label jefes" style="--delay:.48">65,4%</text>
-          <circle cx="293.2" cy="119.1" class="chart-dot jefes" style="--delay:.64"></circle>
-          <text x="293.2" y="134.1" class="chart-val-label jefes" style="--delay:.64">65,3%</text>
-          <circle cx="346.5" cy="123.9" class="chart-dot jefes" style="--delay:.8"></circle>
-          <text x="346.5" y="138.9" class="chart-val-label jefes" style="--delay:.8">64,7%</text>
-          <circle cx="399.8" cy="119.9" class="chart-dot jefes" style="--delay:.96"></circle>
-          <text x="399.8" y="134.9" class="chart-val-label jefes" style="--delay:.96">65,2%</text>
-          <circle cx="453.1" cy="139.9" class="chart-dot jefes" style="--delay:1.12"></circle>
-          <text x="453.1" y="154.9" class="chart-val-label jefes" style="--delay:1.12">62,7%</text>
-          <circle cx="506.4" cy="148.7" class="chart-dot jefes" style="--delay:1.28"></circle>
-          <text x="506.4" y="163.7" class="chart-val-label jefes" style="--delay:1.28">61,6%</text>
-          <circle cx="559.7" cy="159.9" class="chart-dot jefes" style="--delay:1.44"></circle>
-          <text x="559.7" y="174.9" class="chart-val-label jefes" style="--delay:1.44">60,2%</text>
-          <circle cx="613" cy="186.3" class="chart-dot jefes" style="--delay:1.6"></circle>
-          <text x="613" y="201.3" class="chart-val-label jefes" style="--delay:1.6">56,9%</text>
-          <circle cx="666.3" cy="195.1" class="chart-dot jefes" style="--delay:1.76"></circle>
-          <text x="666.3" y="210.1" class="chart-val-label jefes" style="--delay:1.76">55,8%</text>
-          <circle cx="719.6" cy="204.7" class="chart-dot jefes" style="--delay:1.92"></circle>
-          <text x="719.6" y="219.7" class="chart-val-label jefes" style="--delay:1.92">54,6%</text>
-          <circle cx="772.9" cy="213.5" class="chart-dot jefes" style="--delay:2.08"></circle>
-          <text x="772.9" y="203.5" class="chart-val-label jefes" style="--delay:2.08">53,5%</text>
-          <circle cx="826.2" cy="212.7" class="chart-dot jefes" style="--delay:2.24"></circle>
-          <text x="826.2" y="202.7" class="chart-val-label jefes big" style="--delay:2.24">53,6%</text>
-        </g>
+            <!-- puntos y valores: jefes (hombres) -->
+            <g class="series jefes">
+              <circle cx="80" cy="103.1" class="chart-dot jefes" data-step="0.05"></circle>
+              <text x="80" y="93.1" class="chart-val-label jefes" data-step="0.05">67,3%</text>
+              <circle cx="133.3" cy="100.7" class="chart-dot jefes" data-step="0.16"></circle>
+              <text x="133.3" y="115.7" class="chart-val-label jefes" data-step="0.16">67,6%</text>
+              <circle cx="186.6" cy="116.7" class="chart-dot jefes" data-step="0.27"></circle>
+              <text x="186.6" y="131.7" class="chart-val-label jefes" data-step="0.27">65,6%</text>
+              <circle cx="239.9" cy="118.3" class="chart-dot jefes" data-step="0.38"></circle>
+              <text x="239.9" y="133.3" class="chart-val-label jefes" data-step="0.38">65,4%</text>
+              <circle cx="293.2" cy="119.1" class="chart-dot jefes" data-step="0.49"></circle>
+              <text x="293.2" y="134.1" class="chart-val-label jefes" data-step="0.49">65,3%</text>
+              <circle cx="346.5" cy="123.9" class="chart-dot jefes" data-step="0.60"></circle>
+              <text x="346.5" y="138.9" class="chart-val-label jefes" data-step="0.60">64,7%</text>
+              <circle cx="399.8" cy="119.9" class="chart-dot jefes" data-step="0.71"></circle>
+              <text x="399.8" y="134.9" class="chart-val-label jefes" data-step="0.71">65,2%</text>
+              <circle cx="453.1" cy="139.9" class="chart-dot jefes" data-step="0.82"></circle>
+              <text x="453.1" y="154.9" class="chart-val-label jefes" data-step="0.82">62,7%</text>
+              <circle cx="506.4" cy="148.7" class="chart-dot jefes" data-step="0.93"></circle>
+              <text x="506.4" y="163.7" class="chart-val-label jefes" data-step="0.93">61,6%</text>
+              <circle cx="559.7" cy="159.9" class="chart-dot jefes" data-step="1.04"></circle>
+              <text x="559.7" y="174.9" class="chart-val-label jefes" data-step="1.04">60,2%</text>
+              <circle cx="613" cy="186.3" class="chart-dot jefes" data-step="1.15"></circle>
+              <text x="613" y="201.3" class="chart-val-label jefes" data-step="1.15">56,9%</text>
+              <circle cx="666.3" cy="195.1" class="chart-dot jefes" data-step="1.26"></circle>
+              <text x="666.3" y="210.1" class="chart-val-label jefes" data-step="1.26">55,8%</text>
+              <circle cx="719.6" cy="204.7" class="chart-dot jefes" data-step="1.37"></circle>
+              <text x="719.6" y="219.7" class="chart-val-label jefes" data-step="1.37">54,6%</text>
+              <circle cx="772.9" cy="213.5" class="chart-dot jefes" data-step="1.48"></circle>
+              <text x="772.9" y="203.5" class="chart-val-label jefes" data-step="1.48">53,5%</text>
+              <circle cx="826.2" cy="212.7" class="chart-dot jefes" data-step="1.60"></circle>
+              <text x="826.2" y="202.7" class="chart-val-label jefes big" data-step="1.60">53,6%</text>
+            </g>
 
-        <!-- puntos y valores: jefas (mujeres) -->
-        <g class="series jefas">
-          <circle cx="80" cy="379.9" class="chart-dot jefas" style="--delay:0"></circle>
-          <text x="80" y="369.9" class="chart-val-label jefas" style="--delay:0">32,7%</text>
-          <circle cx="133.3" cy="382.3" class="chart-dot jefas" style="--delay:.16"></circle>
-          <text x="133.3" y="397.3" class="chart-val-label jefas" style="--delay:.16">32,4%</text>
-          <circle cx="186.6" cy="366.3" class="chart-dot jefas" style="--delay:.32"></circle>
-          <text x="186.6" y="381.3" class="chart-val-label jefas" style="--delay:.32">34,4%</text>
-          <circle cx="239.9" cy="364.7" class="chart-dot jefas" style="--delay:.48"></circle>
-          <text x="239.9" y="379.7" class="chart-val-label jefas" style="--delay:.48">34,6%</text>
-          <circle cx="293.2" cy="363.9" class="chart-dot jefas" style="--delay:.64"></circle>
-          <text x="293.2" y="378.9" class="chart-val-label jefas" style="--delay:.64">34,7%</text>
-          <circle cx="346.5" cy="359.1" class="chart-dot jefas" style="--delay:.8"></circle>
-          <text x="346.5" y="374.1" class="chart-val-label jefas" style="--delay:.8">35,3%</text>
-          <circle cx="399.8" cy="363.1" class="chart-dot jefas" style="--delay:.96"></circle>
-          <text x="399.8" y="378.1" class="chart-val-label jefas" style="--delay:.96">34,8%</text>
-          <circle cx="453.1" cy="343.1" class="chart-dot jefas" style="--delay:1.12"></circle>
-          <text x="453.1" y="358.1" class="chart-val-label jefas" style="--delay:1.12">37,3%</text>
-          <circle cx="506.4" cy="334.3" class="chart-dot jefas" style="--delay:1.28"></circle>
-          <text x="506.4" y="349.3" class="chart-val-label jefas" style="--delay:1.28">38,4%</text>
-          <circle cx="559.7" cy="323.1" class="chart-dot jefas" style="--delay:1.44"></circle>
-          <text x="559.7" y="338.1" class="chart-val-label jefas" style="--delay:1.44">39,8%</text>
-          <circle cx="613" cy="296.7" class="chart-dot jefas" style="--delay:1.6"></circle>
-          <text x="613" y="311.7" class="chart-val-label jefas" style="--delay:1.6">43,1%</text>
-          <circle cx="666.3" cy="287.9" class="chart-dot jefas" style="--delay:1.76"></circle>
-          <text x="666.3" y="302.9" class="chart-val-label jefas" style="--delay:1.76">44,2%</text>
-          <circle cx="719.6" cy="278.3" class="chart-dot jefas" style="--delay:1.92"></circle>
-          <text x="719.6" y="293.3" class="chart-val-label jefas" style="--delay:1.92">45,4%</text>
-          <circle cx="772.9" cy="269.5" class="chart-dot jefas" style="--delay:2.08"></circle>
-          <text x="772.9" y="259.5" class="chart-val-label jefas" style="--delay:2.08">46,5%</text>
-          <circle cx="826.2" cy="270.3" class="chart-dot jefas last" style="--delay:2.24"></circle>
-          <text x="826.2" y="285.3" class="chart-val-label jefas big" style="--delay:2.24">46,4%</text>
-        </g>
+            <!-- puntos y valores: jefas (mujeres) -->
+            <g class="series jefas">
+              <circle cx="80" cy="379.9" class="chart-dot jefas" data-step="0.05"></circle>
+              <text x="80" y="369.9" class="chart-val-label jefas" data-step="0.05">32,7%</text>
+              <circle cx="133.3" cy="382.3" class="chart-dot jefas" data-step="0.16"></circle>
+              <text x="133.3" y="397.3" class="chart-val-label jefas" data-step="0.16">32,4%</text>
+              <circle cx="186.6" cy="366.3" class="chart-dot jefas" data-step="0.27"></circle>
+              <text x="186.6" y="381.3" class="chart-val-label jefas" data-step="0.27">34,4%</text>
+              <circle cx="239.9" cy="364.7" class="chart-dot jefas" data-step="0.38"></circle>
+              <text x="239.9" y="379.7" class="chart-val-label jefas" data-step="0.38">34,6%</text>
+              <circle cx="293.2" cy="363.9" class="chart-dot jefas" data-step="0.49"></circle>
+              <text x="293.2" y="378.9" class="chart-val-label jefas" data-step="0.49">34,7%</text>
+              <circle cx="346.5" cy="359.1" class="chart-dot jefas" data-step="0.60"></circle>
+              <text x="346.5" y="374.1" class="chart-val-label jefas" data-step="0.60">35,3%</text>
+              <circle cx="399.8" cy="363.1" class="chart-dot jefas" data-step="0.71"></circle>
+              <text x="399.8" y="378.1" class="chart-val-label jefas" data-step="0.71">34,8%</text>
+              <circle cx="453.1" cy="343.1" class="chart-dot jefas" data-step="0.82"></circle>
+              <text x="453.1" y="358.1" class="chart-val-label jefas" data-step="0.82">37,3%</text>
+              <circle cx="506.4" cy="334.3" class="chart-dot jefas" data-step="0.93"></circle>
+              <text x="506.4" y="349.3" class="chart-val-label jefas" data-step="0.93">38,4%</text>
+              <circle cx="559.7" cy="323.1" class="chart-dot jefas" data-step="1.04"></circle>
+              <text x="559.7" y="338.1" class="chart-val-label jefas" data-step="1.04">39,8%</text>
+              <circle cx="613" cy="296.7" class="chart-dot jefas" data-step="1.15"></circle>
+              <text x="613" y="311.7" class="chart-val-label jefas" data-step="1.15">43,1%</text>
+              <circle cx="666.3" cy="287.9" class="chart-dot jefas" data-step="1.26"></circle>
+              <text x="666.3" y="302.9" class="chart-val-label jefas" data-step="1.26">44,2%</text>
+              <circle cx="719.6" cy="278.3" class="chart-dot jefas" data-step="1.37"></circle>
+              <text x="719.6" y="293.3" class="chart-val-label jefas" data-step="1.37">45,4%</text>
+              <circle cx="772.9" cy="269.5" class="chart-dot jefas" data-step="1.48"></circle>
+              <text x="772.9" y="259.5" class="chart-val-label jefas" data-step="1.48">46,5%</text>
+              <circle cx="826.2" cy="270.3" class="chart-dot jefas last" data-step="1.60"></circle>
+              <text x="826.2" y="285.3" class="chart-val-label jefas big" data-step="1.60">46,4%</text>
+            </g>
 
-        <!-- etiquetas de año -->
-        <g class="chart-years">
-          <text x="80" y="440" class="chart-year-label">2010</text>
-          <text x="133.3" y="440" class="chart-year-label">2011</text>
-          <text x="186.6" y="440" class="chart-year-label">2012</text>
-          <text x="239.9" y="440" class="chart-year-label">2013</text>
-          <text x="293.2" y="440" class="chart-year-label">2014</text>
-          <text x="346.5" y="440" class="chart-year-label">2015</text>
-          <text x="399.8" y="440" class="chart-year-label">2016</text>
-          <text x="453.1" y="440" class="chart-year-label">2018</text>
-          <text x="506.4" y="440" class="chart-year-label">2019</text>
-          <text x="559.7" y="440" class="chart-year-label">2020</text>
-          <text x="613" y="440" class="chart-year-label">2021</text>
-          <text x="666.3" y="440" class="chart-year-label">2022</text>
-          <text x="719.6" y="440" class="chart-year-label">2023</text>
-          <text x="772.9" y="440" class="chart-year-label">2024</text>
-          <text x="826.2" y="440" class="chart-year-label">2025</text>
-        </g>
+            <!-- etiquetas de año -->
+            <g class="chart-years">
+              <text x="80" y="440" class="chart-year-label">2010</text>
+              <text x="133.3" y="440" class="chart-year-label">2011</text>
+              <text x="186.6" y="440" class="chart-year-label">2012</text>
+              <text x="239.9" y="440" class="chart-year-label">2013</text>
+              <text x="293.2" y="440" class="chart-year-label">2014</text>
+              <text x="346.5" y="440" class="chart-year-label">2015</text>
+              <text x="399.8" y="440" class="chart-year-label">2016</text>
+              <text x="453.1" y="440" class="chart-year-label">2018</text>
+              <text x="506.4" y="440" class="chart-year-label">2019</text>
+              <text x="559.7" y="440" class="chart-year-label">2020</text>
+              <text x="613" y="440" class="chart-year-label">2021</text>
+              <text x="666.3" y="440" class="chart-year-label">2022</text>
+              <text x="719.6" y="440" class="chart-year-label">2023</text>
+              <text x="772.9" y="440" class="chart-year-label">2024</text>
+              <text x="826.2" y="440" class="chart-year-label">2025</text>
+            </g>
 
-        <!-- etiquetas de serie -->
-        <text x="848" y="258" class="chart-series-label jefas">Jefas<tspan x="848" dy="14">(mujeres)</tspan></text>
-        <text x="848" y="228" class="chart-series-label jefes">Jefes<tspan x="848" dy="14">(hombres)</tspan></text>
-      </svg>
+            <!-- etiquetas de serie -->
+            <text x="848" y="258" class="chart-series-label jefas">Jefas<tspan x="848" dy="14">(mujeres)</tspan></text>
+            <text x="848" y="228" class="chart-series-label jefes">Jefes<tspan x="848" dy="14">(hombres)</tspan></text>
+          </svg>
+        </div>
+      </div>
     </div>
     <div class="col" style="margin-inline:auto"><figcaption><b>Fuente:</b> Encuesta de Calidad de Vida (ECV) 2025 · Cálculos de la Fundación WWB Colombia. No se cuenta con información del 2017</figcaption></div>
   </figure>
@@ -1420,10 +1424,56 @@
     });
   }
 
-  // Gráfica de líneas: calcula la longitud real de cada trazo para el efecto de dibujado
-  document.querySelectorAll('.path-jefas, .path-jefes').forEach(function(p){
-    p.style.setProperty('--len', p.getTotalLength());
-  });
+  // Gráfica de líneas: scrollytelling — el dibujado y los puntos quedan amarrados al scroll
+  (function(){
+    var wrapper = document.querySelector('.scrolly-wrapper');
+    var pathJefas = document.querySelector('.path-jefas');
+    var pathJefes = document.querySelector('.path-jefes');
+    if (!wrapper || !pathJefas || !pathJefes) return;
+
+    var lenJefas = pathJefas.getTotalLength();
+    var lenJefes = pathJefes.getTotalLength();
+    pathJefas.style.strokeDasharray = lenJefas;
+    pathJefes.style.strokeDasharray = lenJefes;
+
+    var stepEls = document.querySelectorAll('.chart-dot[data-step], .chart-val-label[data-step]');
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (reduceMotion) {
+      pathJefas.style.strokeDashoffset = 0;
+      pathJefes.style.strokeDashoffset = 0;
+      stepEls.forEach(function(el){ el.classList.add('visible'); });
+      return;
+    }
+
+    function onScrollScrolly(){
+      var scrollDistance = wrapper.offsetHeight - window.innerHeight;
+      var scrollStart = -wrapper.getBoundingClientRect().top;
+      var progress = scrollDistance > 0 ? scrollStart / scrollDistance : 0;
+      progress = Math.max(0, Math.min(1, progress));
+
+      // 1. Dibuja las líneas amarradas al scroll
+      pathJefas.style.strokeDashoffset = lenJefas * (1 - progress);
+      pathJefes.style.strokeDashoffset = lenJefes * (1 - progress);
+
+      // 2. Hace brotar (y esconde de nuevo) los puntos y valores
+      var currentStep = progress * 1.85;
+      stepEls.forEach(function(el){
+        var step = parseFloat(el.getAttribute('data-step'));
+        el.classList.toggle('visible', currentStep >= step);
+      });
+    }
+
+    var ticking = false;
+    window.addEventListener('scroll', function(){
+      if (!ticking) {
+        window.requestAnimationFrame(function(){ onScrollScrolly(); ticking = false; });
+        ticking = true;
+      }
+    }, {passive:true});
+    window.addEventListener('resize', onScrollScrolly);
+    onScrollScrolly();
+  })();
 
   // Reveal al hacer scroll
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
