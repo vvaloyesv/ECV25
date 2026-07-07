@@ -611,6 +611,11 @@
     .hero .cell + .cell{border-left:0;border-top:1px solid rgba(34,53,129,.16)}
     .income{grid-template-columns:1fr}
     .income .mid{order:-1}
+    /* En móvil el orden visual queda: ratio (arriba), jefa, jefe (abajo). Reajusto los
+       retrasos para que la aparición vaya jefe → jefa → ratio, en vez de heredar el orden
+       de escritorio (jefa → jefe → ratio) que en esta disposición se veía incorrecto */
+    .income.in .jefe{transition-delay:.2s}
+    .income.in .jefa{transition-delay:.7s}
     .compare,.poverty-cards{grid-template-columns:1fr}
     .profile .row{grid-template-columns:1fr 1fr}
     .profile .it:nth-child(3){border-left:0}
